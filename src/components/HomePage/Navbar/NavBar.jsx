@@ -18,7 +18,7 @@ import {
     FiArrowRight
 } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
-import { HeaderSkeleton } from '../ui/SkeletonEffects/HeaderSkeleton';
+import { HeaderSkeleton } from '../../ui/SkeletonEffects/HeaderSkeleton';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -179,7 +179,7 @@ const NavBar = () => {
                                                     {/* Sub-menu Dropdown */}
                                                     {course.subMenu && (
                                                         <div
-                                                            className={`absolute ${course.position === 'left' ? 'right-full mr-2' : 'left-full ml-2'
+                                                            className={`absolute ${course.position === 'left' ? 'right-full mr-5' : 'left-full ml-5'
                                                                 } top-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 z-50 
     ${activeSubMenu === course.title ? 'block' : 'hidden'} 
     max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800`}

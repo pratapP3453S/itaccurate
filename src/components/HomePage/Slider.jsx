@@ -7,7 +7,7 @@ const Slider = () => {
     const [isSliderLoading, setIsSliderLoading] = useState(true);
     const [sliderSlides, setSliderSlides] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-
+ 
     // Clean up slide data
     const cleanUpSlides = useCallback((rawData) => {
         const cleanSlides = rawData.map((slide) => {

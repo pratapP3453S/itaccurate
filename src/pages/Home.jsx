@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../components/HomePage/NavBar';
+import NavBar from '../components/HomePage/Navbar/NavBar';
 import Banner from '../components/HomePage/Banner/Banner';
 import CompanyPartnersRatings from '../components/HomePage/CompanyPartnersRatings';
 import TrainingCourses from '../components/HomePage/TrainingCourses';
@@ -30,7 +30,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="">
+    <div className="font-sans">
       {freeDemoFormPopUp && <FreeDemoForm />}
       {/* <NavBar /> */}
       <Banner />

@@ -16,7 +16,6 @@ import { useSelector } from 'react-redux';
 const TrainingCourses = () => {
     const [showForm, setShowForm] = useState(false);
     const courses = useSelector((state) => state.courses.courseData);
-    console.log(courses)
     const loading = useSelector((state) => state.courses.status);
     const error = useSelector((state) => state.courses.error);
 

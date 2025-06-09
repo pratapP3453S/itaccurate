@@ -699,5 +699,46 @@
                 }
             ]
         }
-    ]
+    ],
+    "courseDetails": {
+        "best-sap-training": {
+            "title": "IT Accurate Best SAP Training Course -Fees, Placements",
+            "bgImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "detail": {
+                "paragraph1": "Best SAP Training by IT Accurate has well-structured SAP Training program. The SAP training Course as well as certification courses help you to maximize the productivity of your Sales, Marketing or Admin tasks by tapping into the vast resources of Salesforce. Join us, Best SAP Classes to build up your career in the booming sector and add the hot skill to your resume. Our subject expert provides the best real time projects, examples, and learnings in the SAP classes. SAP SERVER also provided by IT Accurate ! ",
+                "paragraph2": "Join us, Best SAP Classes to build up your career in the booming sector and add the hot skill to your resume. Our subject expert provides the best real-time projects, examples, and learnings in the SAP classes. <strong>SAP SERVER also provided!</strong>"
+            },
+            "coveringTopics": [
+                {
+                    "title": "Resume preparation",
+                    "icon": "📝"
+                },
+                {
+                    "title": "Interview practice",
+                    "icon": "👔"
+                },
+                {
+                    "title": "6-months internship",
+                    "icon": "👨‍💻"
+                },
+                {
+                    "title": "100% job opportunities guaranteed program",
+                    "icon": "🎓"
+                }
+            ],
+            "whatIs": {
+                "name": "SAP",
+                "points": [
+                    "Stands for Systems, Applications, and Products in Data Processing",
+                    "Most widely used ERP software",
+                    "Manages business operations: sales, production, accounting, HR, finance",
+                    "Specialized modules: SAP MM, FICO, HCM, PP, etc.",
+                    "IT Accurate provides project-based SAP training",
+                    "Open to all backgrounds: IT, non-IT, freshers, experienced",
+                    "Career path: Learn basics → Get trained → Join communities → Gain experience",
+                    "Requires hard work, dedication, and commitment to master"
+                ]
+            }
+        }
+    }
 }
