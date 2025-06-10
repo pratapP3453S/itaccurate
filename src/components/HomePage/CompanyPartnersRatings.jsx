@@ -40,8 +40,8 @@ const CompanyPartnersRatings = () => {
     };
 
     return (
-        <section className="p-8 mt-[67vh] sm:mt-[52vh] md:mt-[12vh] lg:py-[7vh] dark:bg-gray-800 bg-gray-100">
-            {/* Title Section */}
+        <section className="p-8
+    md:mt-[12vh] lg:py-[7vh] dark:bg-gray-800 bg-gray-100"> 
             <div className="container mx-auto px-4 mb-8 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-800 mb-2">
                     Our Valued Partners

@@ -55,6 +55,28 @@ const NavBar = () => {
         document.documentElement.classList.toggle('dark', newMode);
     };
 
+    useEffect(() => {
+        const handleClickOutside = () => {
+            setActiveMainMenu(null);
+            setActiveSubMenu(null);
+            setIsHoveringDropdown(false);
+            setIsHoveringSubmenu(false);
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+    const handleMouseLeave = (hasDropdown, callback) => {
+        setTimeout(() => {
+            if (!isHoveringDropdown && !isHoveringSubmenu) {
+                callback();
+            }
+        }, 150);
+    };
+
     const menuItems = useSelector((state) => state.navbar.menuItems);
     const loading = useSelector((state) => state.navbar.status);
     const error = useSelector((state) => state.navbar.error);
@@ -114,17 +136,25 @@ const NavBar = () => {
                         </div>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden md:flex items-center space-x-1">
+                        <nav className="hidden md:flex items-center space-x-1 relative z-50">
                             {navItems.map((item) => (
                                 <div
                                     key={item.name}
-                                    className="relative group" // Added group class
+                                    className="relative group"
+                                    onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
                                 >
                                     <a
                                         href={item.path}
-                                        className="px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-gray-800 hover:bg-gray-100 transition-colors flex items-center"
+                                        className="px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-gray-800 hover:bg-gray-100 transition-colors duration-200 flex items-center"
                                         onMouseEnter={() => item.hasDropdown && setActiveMainMenu(item.name)}
-                                        onMouseLeave={() => item.hasDropdown && setActiveMainMenu(null)}
+                                        onMouseLeave={() => {
+                                            if (item.hasDropdown) {
+                                                handleMouseLeave(item.hasDropdown, () => {
+                                                    setActiveMainMenu(null);
+                                                    setActiveSubMenu(null);
+                                                });
+                                            }
+                                        }}
                                     >
                                         <span className="mr-2">{item.icon}</span>
                                         {item.name}
@@ -135,110 +165,120 @@ const NavBar = () => {
                                         )}
                                     </a>
 
-                                    {/* Courses Dropdown */}
-                                    {item.hasDropdown && item.name === 'Courses' && (
-                                        <div
-                                            className={`absolute left-0 lg:left-[-30vh] mt-0 w-[700px] bg-slate-50/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-lg shadow-xl p-4 grid grid-cols-2 gap-2 z-50 
-                                                ${activeMainMenu === item.name ? 'block' : 'hidden'}`}
+                                    {/* Dropdown Container */}
+                                    {item.hasDropdown && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{
+                                                opacity: activeMainMenu === item.name ? 1 : 0,
+                                                y: activeMainMenu === item.name ? 0 : 10,
+                                                visibility: activeMainMenu === item.name ? 'visible' : 'hidden'
+                                            }}
+                                            transition={{ duration: 0.2, ease: 'easeOut' }}
+                                            className={`absolute left-0 mt-1 ${item.name === 'Courses'
+                                                    ? 'lg:left-[-30vh] w-[700px] p-4 grid grid-cols-2 gap-2'
+                                                    : 'w-56 p-2'
+                                                } bg-slate-50/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-lg shadow-xl z-50 border border-gray-200/50 dark:border-gray-700/50`}
                                             onMouseEnter={() => {
-                                                clearTimeout(hoverTimeout);
                                                 setActiveMainMenu(item.name);
-                                                setIsHoveringSubmenu(true);
+                                                setIsHoveringDropdown(true);
                                             }}
                                             onMouseLeave={() => {
-                                                const timeout = setTimeout(() => {
-                                                    if (!isHoveringSubmenu) {
-                                                        setActiveMainMenu(null);
-                                                        setActiveSubMenu(null);
-                                                    }
-                                                }, 300); // 300ms delay
-                                                setHoverTimeout(timeout);
+                                                setIsHoveringDropdown(false);
+                                                handleMouseLeave(true, () => {
+                                                    setActiveMainMenu(null);
+                                                    setActiveSubMenu(null);
+                                                });
                                             }}
                                         >
-                                            {menuItems.map((course) => (
-                                                <div
-                                                    key={course.title}
-                                                    className="relative group" // Added group class
-                                                    onMouseEnter={() => course.subMenu && setActiveSubMenu(course.title)}
-                                                    onMouseLeave={() => setActiveSubMenu(null)}
-                                                >
-                                                    <a
-                                                        href={`#${course.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                                        className={`p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-start ${activeSubMenu === course.title ? 'bg-gray-100 dark:bg-gray-700' : ''}`}
-                                                    >
-                                                        <span className="text-2xl mr-3">{course.icon}</span>
-                                                        <div className="flex-1">
-                                                            <h3 className="font-medium dark:text-white text-gray-800">{course.title}</h3>
-                                                            <p className="text-sm text-gray-500 dark:text-gray-400">{course.description}</p>
-                                                        </div>
-                                                        {course.subMenu && (
-                                                            <FiArrowRight className="ml-2 text-gray-400" />
-                                                        )}
-                                                    </a>
-
-                                                    {/* Sub-menu Dropdown */}
-                                                    {course.subMenu && (
+                                            {/* Courses Dropdown */}
+                                            {item.name === 'Courses' && (
+                                                <>
+                                                    {menuItems.map((course) => (
                                                         <div
-                                                            className={`absolute ${course.position === 'left' ? 'right-full mr-5' : 'left-full ml-5'
-                                                                } top-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 z-50 
-    ${activeSubMenu === course.title ? 'block' : 'hidden'} 
-    max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800`}
-                                                            onMouseEnter={() => {
-                                                                clearTimeout(hoverTimeout);
-                                                                setIsHoveringSubmenu(true);
-                                                            }}
+                                                            key={course.title}
+                                                            className="relative group"
+                                                            onMouseEnter={() => course.subMenu && setActiveSubMenu(course.title)}
                                                             onMouseLeave={() => {
-                                                                setIsHoveringSubmenu(false);
-                                                                const timeout = setTimeout(() => {
+                                                                handleMouseLeave(course.subMenu, () => {
                                                                     setActiveSubMenu(null);
-                                                                }, 200);
-                                                                setHoverTimeout(timeout);
+                                                                });
                                                             }}
                                                         >
-                                                            <h4 className="font-semibold text-gray-800 dark:text-white mb-2 px-2">
-                                                                {course.title} Courses
-                                                            </h4>
-                                                            <ul className="space-y-1">
-                                                                {course.subMenu.map((subItem) => (
-                                                                    <li key={subItem.title}>
-                                                                        <Link
-                                                                            to={subItem.link}
-                                                                            className="block px-3 py-2 rounded-md text-sm dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors"
-                                                                        >
-                                                                            {subItem.title}
-                                                                        </Link>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
+                                                            <a
+                                                                href={`#${course.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                                                className={`p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 flex items-start ${activeSubMenu === course.title ? 'bg-gray-100 dark:bg-gray-700' : ''
+                                                                    }`}
+                                                            >
+                                                                <span className="text-2xl mr-3 text-purple-600 dark:text-purple-400">{course.icon}</span>
+                                                                <div className="flex-1">
+                                                                    <h3 className="font-medium dark:text-white text-gray-800">{course.title}</h3>
+                                                                    <p className="text-sm text-gray-500 dark:text-gray-400">{course.description}</p>
+                                                                </div>
+                                                                {course.subMenu && (
+                                                                    <FiArrowRight className="ml-2 text-gray-400 self-center" />
+                                                                )}
+                                                            </a>
+
+                                                            {/* Sub-menu Dropdown */}
+                                                            {course.subMenu && (
+                                                                <motion.div
+                                                                    initial={{ opacity: 0, x: course.position === 'left' ? 10 : -10 }}
+                                                                    animate={{
+                                                                        opacity: activeSubMenu === course.title ? 1 : 0,
+                                                                        x: activeSubMenu === course.title ? 0 : (course.position === 'left' ? 10 : -10),
+                                                                        visibility: activeSubMenu === course.title ? 'visible' : 'hidden'
+                                                                    }}
+                                                                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                                                                    className={`absolute ${course.position === 'left' ? 'right-full mr-2' : 'left-full ml-2'
+                                                                        } top-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 z-50 border border-gray-200/50 dark:border-gray-700/50
+                          max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800`}
+                                                                    onMouseEnter={() => setIsHoveringSubmenu(true)}
+                                                                    onMouseLeave={() => {
+                                                                        setIsHoveringSubmenu(false);
+                                                                        handleMouseLeave(true, () => {
+                                                                            setActiveSubMenu(null);
+                                                                        });
+                                                                    }}
+                                                                >
+                                                                    <h4 className="font-semibold text-gray-800 dark:text-white mb-2 px-2">
+                                                                        {course.title} Courses
+                                                                    </h4>
+                                                                    <ul className="space-y-1">
+                                                                        {course.subMenu.map((subItem) => (
+                                                                            <li key={subItem.title}>
+                                                                                <Link
+                                                                                    to={subItem.link}
+                                                                                    className="block px-3 py-2 rounded-md text-sm dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                                                                                >
+                                                                                    {subItem.title}
+                                                                                </Link>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </motion.div>
+                                                            )}
                                                         </div>
-                                                    )}
+                                                    ))}
+                                                </>
+                                            )}
 
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {/* Placements Dropdown */}
-                                    {item.hasDropdown && item.name === 'Placements' && (
-                                        <div
-                                            className={`absolute left-0 mt-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-2 z-50 
-                                                ${activeMainMenu === item.name ? 'block' : 'hidden'}`}
-                                            onMouseEnter={() => setActiveMainMenu(item.name)}
-                                            onMouseLeave={() => setActiveMainMenu(null)}
-                                        >
-                                            <ul className="space-y-1">
-                                                {item.subMenu.map((subItem) => (
-                                                    <li key={subItem}>
-                                                        <a
-                                                            href={`#${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                                                            className="block px-3 py-2 rounded-md text-sm dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors"
-                                                        >
-                                                            {subItem}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                            {/* Placements Dropdown */}
+                                            {item.name === 'Placements' && (
+                                                <ul className="space-y-1">
+                                                    {item.subMenu.map((subItem) => (
+                                                        <li key={subItem}>
+                                                            <a
+                                                                href={`#${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                                                                className="block px-3 py-2 rounded-md text-sm dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                                                            >
+                                                                {subItem}
+                                                            </a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </motion.div>
                                     )}
                                 </div>
                             ))}
@@ -250,15 +290,18 @@ const NavBar = () => {
                                 </div>
                                 <input
                                     type="text"
-                                    className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 dark:bg-gray-700 bg-gray-100 dark:text-gray-300 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm"
+                                    className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 dark:bg-gray-700 bg-gray-100 dark:text-gray-300 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm transition-all duration-200"
                                     placeholder="Search..."
                                 />
                             </div>
 
                             {/* Dark/Light Mode Toggle */}
                             <button
-                                onClick={toggleDarkMode}
-                                className="ml-4 p-2 rounded-full dark:text-yellow-300 text-gray-700 hover:dark:bg-gray-800 hover:bg-gray-100 transition-colors"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleDarkMode();
+                                }}
+                                className="ml-4 p-2 rounded-full dark:text-yellow-300 text-gray-700 hover:dark:bg-gray-800 hover:bg-gray-100 transition-colors duration-200"
                                 aria-label="Toggle dark mode"
                             >
                                 <motion.div

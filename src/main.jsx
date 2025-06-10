@@ -3,13 +3,13 @@ import './index.css'
 import App from './App.jsx'
 import { Provider } from "react-redux";
 import store from './store/store.js';
-
+// import { RouteProvider } from './RouteContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <div className='dark:bg-black'>
-      <App />
-    </div>
+      <div className='dark:bg-black'>
+        <App />
+      </div>
   </Provider>
 )

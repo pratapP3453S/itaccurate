@@ -738,7 +738,69 @@
                     "Career path: Learn basics → Get trained → Join communities → Gain experience",
                     "Requires hard work, dedication, and commitment to master"
                 ]
+            },
+            "keyFeatures": [
+                    {
+                        "text": "152+ Hrs Instructor-Led Training",
+                        "icon": "FiClock",
+                        "bgImage": "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=500')"
+                    },
+                    {
+                        "text": "36Hrs Self-Placed Videos",
+                        "icon": "FiVideo",
+                        "bgImage": "url('https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?q=80&w=500')"
+                    },
+                    {
+                        "text": "Certificate Guidance",
+                        "icon": "FiAward",
+                        "bgImage": "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=500')"
+                    },
+                    {
+                        "text": "Job Assistance",
+                        "icon": "FiBriefcase",
+                        "bgImage": "url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500')"
+                    },
+                    {
+                        "text": "Mentor Support",
+                        "icon": "FiHelpCircle",
+                        "bgImage": "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500')"
+                    },
+                    {
+                        "text": "Free Demo Class Available",
+                        "icon": "FiCalendar",
+                        "bgImage": "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=500')"
+                    },
+                    {
+                        "text": "Resume Editing",
+                        "icon": "FiEdit2",
+                        "bgImage": "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500')"
+                    },
+                    {
+                        "text": "Affordable Fees Structure",
+                        "icon": "FiDollarSign",
+                        "bgImage": "url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=500')"
+                    },
+                    {
+                        "text": "52 Hrs Project & Exercises",
+                        "icon": "FiCode",
+                        "bgImage": "url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=500')"
+                    },
+                    {
+                        "text": "Flexible Schedule",
+                        "icon": "FiCalendar",
+                        "bgImage": "url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=500')"
+                    },
+                    {
+                        "text": "100% Job Oriented Training",
+                        "icon": "FiBriefcase",
+                        "bgImage": "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500')"
+                    },
+                    {
+                        "text": "Completed 1500+ Batches",
+                        "icon": "FiUsers",
+                        "bgImage": "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=500')"
+                    }
+                ]
             }
         }
     }
-}
