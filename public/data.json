@@ -740,67 +740,242 @@
                 ]
             },
             "keyFeatures": [
-                    {
-                        "text": "152+ Hrs Instructor-Led Training",
-                        "icon": "FiClock",
-                        "bgImage": "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=500')"
-                    },
-                    {
-                        "text": "36Hrs Self-Placed Videos",
-                        "icon": "FiVideo",
-                        "bgImage": "url('https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?q=80&w=500')"
-                    },
-                    {
-                        "text": "Certificate Guidance",
-                        "icon": "FiAward",
-                        "bgImage": "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=500')"
-                    },
-                    {
-                        "text": "Job Assistance",
-                        "icon": "FiBriefcase",
-                        "bgImage": "url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500')"
-                    },
-                    {
-                        "text": "Mentor Support",
-                        "icon": "FiHelpCircle",
-                        "bgImage": "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500')"
-                    },
-                    {
-                        "text": "Free Demo Class Available",
-                        "icon": "FiCalendar",
-                        "bgImage": "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=500')"
-                    },
-                    {
-                        "text": "Resume Editing",
-                        "icon": "FiEdit2",
-                        "bgImage": "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500')"
-                    },
-                    {
-                        "text": "Affordable Fees Structure",
-                        "icon": "FiDollarSign",
-                        "bgImage": "url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=500')"
-                    },
-                    {
-                        "text": "52 Hrs Project & Exercises",
-                        "icon": "FiCode",
-                        "bgImage": "url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=500')"
-                    },
-                    {
-                        "text": "Flexible Schedule",
-                        "icon": "FiCalendar",
-                        "bgImage": "url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=500')"
-                    },
-                    {
-                        "text": "100% Job Oriented Training",
-                        "icon": "FiBriefcase",
-                        "bgImage": "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500')"
-                    },
-                    {
-                        "text": "Completed 1500+ Batches",
-                        "icon": "FiUsers",
-                        "bgImage": "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=500')"
-                    }
+                {
+                    "text": "152+ Hrs Instructor-Led Training",
+                    "icon": "FiClock",
+                    "bgImage": "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=500')"
+                },
+                {
+                    "text": "36Hrs Self-Placed Videos",
+                    "icon": "FiVideo",
+                    "bgImage": "url('https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?q=80&w=500')"
+                },
+                {
+                    "text": "Certificate Guidance",
+                    "icon": "FiAward",
+                    "bgImage": "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=500')"
+                },
+                {
+                    "text": "Job Assistance",
+                    "icon": "FiBriefcase",
+                    "bgImage": "url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500')"
+                },
+                {
+                    "text": "Mentor Support",
+                    "icon": "FiHelpCircle",
+                    "bgImage": "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500')"
+                },
+                {
+                    "text": "Free Demo Class Available",
+                    "icon": "FiCalendar",
+                    "bgImage": "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=500')"
+                },
+                {
+                    "text": "Resume Editing",
+                    "icon": "FiEdit2",
+                    "bgImage": "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500')"
+                },
+                {
+                    "text": "Affordable Fees Structure",
+                    "icon": "FiDollarSign",
+                    "bgImage": "url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=500')"
+                },
+                {
+                    "text": "52 Hrs Project & Exercises",
+                    "icon": "FiCode",
+                    "bgImage": "url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=500')"
+                },
+                {
+                    "text": "Flexible Schedule",
+                    "icon": "FiCalendar",
+                    "bgImage": "url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=500')"
+                },
+                {
+                    "text": "100% Job Oriented Training",
+                    "icon": "FiBriefcase",
+                    "bgImage": "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500')"
+                },
+                {
+                    "text": "Completed 1500+ Batches",
+                    "icon": "FiUsers",
+                    "bgImage": "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=500')"
+                }
+            ]
+        },
+        "sap-abap": {
+            "title": "IT Accurate- Best SAP ABAP Training Course-Fees, Placements",
+            "bgImage": "https://plus.unsplash.com/premium_photo-1726474433745-25e7b36aaa7a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "detail": {
+                "paragraph1": "SAP ABAP Training by IT Accurate offers you the best SAP ABAP(Advanced Business Application Programming) training for freshers and experienced candidates, with expert guidance and 100% guaranteed placement assistance. Our SAP training course covers every technical topic in detail and the student is left with real-time hands-on experience.",
+                "paragraph2": "Our practical, Job-oriented training program will not only provide you with a certificate but also with knowledge equivalent to around 2+ years of field experience. We value your time as much as over. Hence we invented to train you in SAP ABAP with S/4 HANA in just 4 months.",
+                "extras": [
+                    "End user 1 month (ECC / S4 HANA)",
+                    "Configuration 2 months(ECC/S4 HANA)",
+                    "Configuration 2 months(ECC/S4 HANA)"
                 ]
-            }
+            },
+            "coveringTopics": [
+                {
+                    "title": "Resume preparation",
+                    "icon": "📝"
+                },
+                {
+                    "title": "Interview practice",
+                    "icon": "👔"
+                },
+                {
+                    "title": "6-months internship",
+                    "icon": "👨‍💻"
+                },
+                {
+                    "title": "100% job opportunities guaranteed program",
+                    "icon": "🎓"
+                }
+            ],
+            "whatIs": {
+                "name": "SAP ABAP",
+                "points": [
+                    "SAP (Advanced Business Application Programming) is the primary programming language supported on the SAP NetWeaver ABAP application server platform and applications that run on it, such as SAP ERP (formerly R/3), S/4HANA and CRM.",
+                    "ABAP helps customise workflows for financial accounting, materials management, asset management, and all other modules of SAP. SAP’s current development platform NetWeaver also supports both ABAP and Java.",
+                    "There are 2 Types of SAP ERP system Modules: Functional Modules and Technical Modules. All SAP Modules integrate with each other with functionality and provide the best solution for a Business.",
+                    "IT Accurate training provides SAP ABAP training in offline and online mode. Starting end user, consulting, implementation, support with real time SAP project based training.",
+                    "IT background, non IT background, freshers, experience can start their career in SAP irrespective of their background.",
+                    "IT Accurate is the best training institute with the 100% job opportunities."
+                ]
+            },
+            "keyFeatures": [
+                {
+                    "text": "130+ Hours course duration",
+                    "icon": "FiClock",
+                    "bgImage": "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=500')"
+                },
+                {
+                    "text": "Free demo class available",
+                    "icon": "FiVideo",
+                    "bgImage": "url('https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?q=80&w=500')"
+                },
+                {
+                    "text": "Certificate Guidance",
+                    "icon": "FiAward",
+                    "bgImage": "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=500')"
+                },
+                {
+                    "text": "100% Job oriented training",
+                    "icon": "FiBriefcase",
+                    "bgImage": "url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500')"
+                },
+                {
+                    "text": "Industry expert faculties",
+                    "icon": "FiHelpCircle",
+                    "bgImage": "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500')"
+                },
+                {
+                    "text": "Completed 120+ batches",
+                    "icon": "FiUsers",
+                    "bgImage": "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=500')"
+                }
+            ],
+            "roadMap": [
+                {
+                    "title": "Introduction",
+                    "description": "Foundation of SAP knowledge",
+                    "icon": "📚",
+                    "items": [
+                        "What is SAP?",
+                        "What is SAP ABAP?",
+                        "What is SAP HANA?",
+                        "SAP course overview",
+                        "SAP certification paths",
+                        "SAP job market in India",
+                        "SAP opportunities in Nagpur"
+                    ],
+                    "color": "from-blue-500 to-indigo-600"
+                },
+                {
+                    "title": "Web Dynpro ABAP",
+                    "description": "Web application development in SAP",
+                    "icon": "🌐",
+                    "items": [
+                        "Develop web-based applications with Web Dynpro ABAP",
+                        "Master MVC (Model-View-Controller) architecture",
+                        "Create UI components and controllers",
+                        "Implement navigation between views"
+                    ],
+                    "color": "from-green-500 to-teal-600"
+                },
+                {
+                    "title": "ABAP OOP",
+                    "description": "Modern ABAP development techniques",
+                    "icon": "🧩",
+                    "items": [
+                        "Implement ABAP Object-Oriented Programming",
+                        "Create and use classes and interfaces",
+                        "Understand inheritance and polymorphism",
+                        "Apply encapsulation principles"
+                    ],
+                    "color": "from-purple-500 to-pink-600"
+                },
+                {
+                    "title": "Debugging & Optimization",
+                    "description": "Ensure code quality and performance",
+                    "icon": "🔍",
+                    "items": [
+                        "Master ABAP debugging techniques",
+                        "Optimize ABAP code performance",
+                        "Improve database query efficiency",
+                        "Analyze runtime statistics"
+                    ],
+                    "color": "from-yellow-500 to-orange-600"
+                },
+                {
+                    "title": "ALV Programming",
+                    "description": "Reporting solutions in SAP",
+                    "icon": "📊",
+                    "items": [
+                        "Develop reports using ALV Grid",
+                        "Create ALV List displays",
+                        "Customize ALV output formats",
+                        "Implement interactive ALV features"
+                    ],
+                    "color": "from-red-500 to-amber-600"
+                },
+                {
+                    "title": "ABAP Unit Testing",
+                    "description": "Quality assurance in ABAP",
+                    "icon": "🧪",
+                    "items": [
+                        "Implement unit testing with ABAP Unit",
+                        "Apply test-driven development (TDD)",
+                        "Create test classes and methods",
+                        "Analyze test coverage"
+                    ],
+                    "color": "from-indigo-500 to-blue-600"
+                },
+                {
+                    "title": "SAP Gateway & OData",
+                    "description": "Integration technologies",
+                    "icon": "🔗",
+                    "items": [
+                        "Build OData services with SAP Gateway",
+                        "Enable SAP-external communication",
+                        "Create RESTful APIs",
+                        "Consume OData services"
+                    ],
+                    "color": "from-emerald-500 to-cyan-600"
+                },
+                {
+                    "title": "Career Preparation",
+                    "description": "Launch your SAP career",
+                    "icon": "📝",
+                    "items": [
+                        "Optimize resume with SAP keywords",
+                        "Highlight project impact and achievements",
+                        "Showcase technical and soft skills",
+                        "Fresher-specific interview strategies"
+                    ],
+                    "color": "from-violet-500 to-purple-600"
+                }
+            ]
         }
     }
+}
