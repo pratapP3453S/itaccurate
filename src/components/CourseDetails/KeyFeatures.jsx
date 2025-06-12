@@ -2,10 +2,13 @@ import { motion } from 'framer-motion';
 import { FiStar } from 'react-icons/fi';
 import { useLoaderData } from 'react-router-dom';
 import * as FiIcons from 'react-icons/fi';
+import { useState } from 'react';
+import FreeDemoForm from '../ContactUs/FreeDemoForm';
 
 
 function KeyFeatures() {
   const courseDetail = useLoaderData();
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <section className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-100 min-h-[600px] overflow-hidden">
@@ -19,10 +22,9 @@ function KeyFeatures() {
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-10 sm:mb-12 lg:mb-16 relative"
         >
           <span className="relative inline-block">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 dark:from-purple-400 dark:via-pink-400 dark:to-indigo-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
               Key Features of {courseDetail.whatIs.name} Training
             </span>
-            <span className="absolute -bottom-1 left-0 w-full h-1.5 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 dark:from-purple-400 dark:via-pink-400 dark:to-indigo-400 rounded-full transform scale-x-75 origin-center group-hover:scale-x-100 transition-transform duration-500"></span>
           </span>
         </motion.h2>
 
@@ -41,11 +43,6 @@ function KeyFeatures() {
                 viewport={{ once: true }}
                 className="relative overflow-hidden rounded-2xl group h-full"
               >
-                {/* Background image with subtle blur and reduced opacity */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center opacity-100 group-hover:opacity-80 transition-all duration-500 backdrop-blur-[2px]"
-                  style={{ backgroundImage: feature.bgImage }}
-                ></div>
 
                 {/* Content container with better visibility control */}
                 <div className="relative bg-white/70 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-2 sm:p-4 lg:p-6 shadow-md hover:shadow-xl hover:shadow-purple-500/20 dark:hover:shadow-purple-400/10 transition-all duration-500 h-full flex flex-col items-center justify-center">
@@ -68,6 +65,10 @@ function KeyFeatures() {
           })}
 
         </div>
+        {/* showing form on click of enroll button */}
+        {showForm && (
+          <FreeDemoForm onClose={() => setShowForm(false)} />
+        )}
 
         {/* Call to action button with enhanced animation */}
         <motion.div
@@ -78,7 +79,7 @@ function KeyFeatures() {
           viewport={{ once: true }}
           className="mt-10 sm:mt-12 lg:mt-16 text-center"
         >
-          <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 dark:from-purple-500 dark:via-pink-400 dark:to-indigo-500 text-white font-semibold text-base sm:text-lg rounded-full hover:shadow-xl hover:shadow-purple-500/40 dark:hover:shadow-purple-400/30 transition-all duration-500 flex items-center justify-center mx-auto gap-2 sm:gap-3">
+          <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-base sm:text-lg rounded-full hover:shadow-xl hover:shadow-purple-500/40 dark:hover:shadow-purple-400/30 transition-all duration-500 flex items-center justify-center mx-auto gap-2 sm:gap-3" onClick={() => setShowForm(true)}>
             <FiStar className="animate-pulse text-lg sm:text-xl" />
             <span>Enroll Now</span>
           </button>

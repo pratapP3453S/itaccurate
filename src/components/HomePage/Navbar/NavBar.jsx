@@ -126,13 +126,13 @@ const NavBar = () => {
                     <div className="flex justify-between items-center">
                         {/* Logo */}
                         <div className="flex items-center">
-                            <a href="/" className="flex items-center">
+                            <Link to="/" className="flex items-center">
                                 <img
                                     src="./logo.webp"
                                     alt="IT Accurate Logo"
                                     className="h-12 w-auto"
                                 />
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Desktop Navigation */}

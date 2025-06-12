@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 
 function TopicsSection({ courseDetail }) {
   // Calculate dynamic size based on the longest text
@@ -39,7 +38,7 @@ function TopicsSection({ courseDetail }) {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-10 sm:mb-12 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-500 to-pink-600 dark:from-purple-400 dark:via-blue-400 dark:to-pink-400 relative z-10"
+        className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold mb-10 sm:mb-12 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600 relative z-10"
       >
         All the Topics Will Be Covered in Detail and Also Include:
       </motion.h1>

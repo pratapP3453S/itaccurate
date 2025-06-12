@@ -824,139 +824,23 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoaderData } from "react-router-dom";
 
-// const sapModules = [
-//   {
-//     title: "Introduction",
-//     description: "Foundation of SAP knowledge",
-//     icon: "📚",
-//     items: [
-//       "What is SAP?",
-//       "What is SAP ABAP?",
-//       "What is SAP HANA?",
-//       "SAP course overview",
-//       "SAP certification paths",
-//       "SAP job market in India",
-//       "SAP opportunities in Nagpur"
-//     ],
-//     color: "from-blue-500 to-indigo-600"
-//   },
-//   {
-//     title: "Web Dynpro ABAP",
-//     description: "Web application development in SAP",
-//     icon: "🌐",
-//     items: [
-//       "Develop web-based applications with Web Dynpro ABAP",
-//       "Master MVC (Model-View-Controller) architecture",
-//       "Create UI components and controllers",
-//       "Implement navigation between views"
-//     ],
-//     color: "from-green-500 to-teal-600"
-//   },
-//   {
-//     title: "ABAP OOP",
-//     description: "Modern ABAP development techniques",
-//     icon: "🧩",
-//     items: [
-//       "Implement ABAP Object-Oriented Programming",
-//       "Create and use classes and interfaces",
-//       "Understand inheritance and polymorphism",
-//       "Apply encapsulation principles"
-//     ],
-//     color: "from-purple-500 to-pink-600"
-//   },
-//   {
-//     title: "Debugging & Optimization",
-//     description: "Ensure code quality and performance",
-//     icon: "🔍",
-//     items: [
-//       "Master ABAP debugging techniques",
-//       "Optimize ABAP code performance",
-//       "Improve database query efficiency",
-//       "Analyze runtime statistics"
-//     ],
-//     color: "from-yellow-500 to-orange-600"
-//   },
-//   {
-//     title: "ALV Programming",
-//     description: "Reporting solutions in SAP",
-//     icon: "📊",
-//     items: [
-//       "Develop reports using ALV Grid",
-//       "Create ALV List displays",
-//       "Customize ALV output formats",
-//       "Implement interactive ALV features"
-//     ],
-//     color: "from-red-500 to-amber-600"
-//   },
-//   {
-//     title: "ABAP Unit Testing",
-//     description: "Quality assurance in ABAP",
-//     icon: "🧪",
-//     items: [
-//       "Implement unit testing with ABAP Unit",
-//       "Apply test-driven development (TDD)",
-//       "Create test classes and methods",
-//       "Analyze test coverage"
-//     ],
-//     color: "from-indigo-500 to-blue-600"
-//   },
-//   {
-//     title: "SAP Gateway & OData",
-//     description: "Integration technologies",
-//     icon: "🔗",
-//     items: [
-//       "Build OData services with SAP Gateway",
-//       "Enable SAP-external communication",
-//       "Create RESTful APIs",
-//       "Consume OData services"
-//     ],
-//     color: "from-emerald-500 to-cyan-600"
-//   },
-//   {
-//     title: "Career Preparation",
-//     description: "Launch your SAP career",
-//     icon: "📝",
-//     items: [
-//       "Optimize resume with SAP keywords",
-//       "Highlight project impact and achievements",
-//       "Showcase technical and soft skills",
-//       "Fresher-specific interview strategies"
-//     ],
-//     color: "from-violet-500 to-purple-600"
-//   },
-// ];
-
 export default function RoadMap() {
   const [activeIndex, setActiveIndex] = useState(null);
-  const [direction, setDirection] = useState("right");
   const roadmapData = useLoaderData();
 
   return (
-    <section className="min-h-screen px-4 py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative w-full px-4 py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 inline-block">
-             Roadmap to Learn {roadmapData.whatIs.name}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600 inline-block">
+            Roadmap to Learn {roadmapData.whatIs.name}
           </h2>
         </div>
 
-        <div className="relative">
-          {/* Timeline path */}
-          <div className="absolute left-0 right-0 top-1/2 h-2 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full opacity-20 hidden md:block"></div>
-          
-          {/* Zigzag path */}
-          <svg className="absolute w-full h-full top-0 left-0 hidden md:block" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path 
-              d="M0,50 
-                 C10,10 20,90 30,50
-                 C40,10 50,90 60,50
-                 C70,10 80,90 90,50
-                 C100,10 100,90 100,50" 
-              stroke="url(#gradient)" 
-              strokeWidth="0.5" 
-              fill="none"
-              strokeDasharray="2 2"
-            />
+        {/* Background Curve Line */}
+        <div className="absolute inset-0 top-1/2 transform -translate-y-1/2 pointer-events-none z-0 hidden md:block">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#3b82f6" />
@@ -964,91 +848,101 @@ export default function RoadMap() {
                 <stop offset="100%" stopColor="#ec4899" />
               </linearGradient>
             </defs>
+            <path 
+              d="M0,50 
+                 C10,10 20,90 30,50
+                 C40,10 50,90 60,50
+                 C70,10 80,90 90,50
+                 C100,10 100,90 100,50" 
+              stroke="url(#gradient)" 
+              strokeWidth="1.5" 
+              fill="none"
+              strokeDasharray="4 4"
+              opacity="0.3"
+            />
           </svg>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-            {roadmapData.roadMap.map((module, index) => {
-              const row = Math.floor(index / 4);
-              const isEvenRow = row % 2 === 0;
-              const positionInRow = index % 4;
-              const delay = index * 0.1;
-              
-              // Alternate alignment for even/odd rows
-              const alignmentClass = isEvenRow 
-                ? positionInRow % 2 === 0 ? "md:mt-0" : "md:mt-20" 
-                : positionInRow % 2 === 0 ? "md:mt-20" : "md:mt-0";
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay }}
-                  className={`flex flex-col items-center cursor-pointer text-center ${alignmentClass}`}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                    className={`relative w-20 h-20 rounded-full flex items-center justify-center text-3xl bg-gradient-to-tr ${module.color} text-white shadow-xl hover:shadow-2xl transition-all z-10`}
-                  >
-                    {module.icon}
-                    <div className="absolute -inset-2 rounded-full border-2 border-white/30 animate-ping opacity-0 hover:opacity-100 transition-opacity"></div>
-                  </motion.div>
-                  
-                  {/* Connector line - visible on desktop */}
-                  <div className="hidden md:block absolute top-10 h-8 w-px bg-gradient-to-b from-blue-400 to-purple-500"></div>
-                  
-                  <div className="mt-6 px-4">
-                    <h3 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                      {module.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                      {module.description}
-                    </p>
-                  </div>
-
-                  <AnimatePresence>
-                    {activeIndex === index && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                        className="mt-6 w-full bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 text-left backdrop-blur-sm"
-                      >
-                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white dark:bg-gray-800 rotate-45 border-t border-l border-gray-200 dark:border-gray-700"></div>
-                        <h4 className="font-semibold text-lg mb-3 flex items-center">
-                          <span className={`bg-gradient-to-r ${module.color} rounded-full w-6 h-6 flex items-center justify-center text-white mr-2`}>
-                            {module.icon}
-                          </span>
-                          {module.title} Details
-                        </h4>
-                        <ul className="space-y-3">
-                          {module.items.map((item, i) => (
-                            <li key={i} className="flex items-start">
-                              <span className={`flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-gradient-to-br ${module.color} text-white flex items-center justify-center text-xs mr-2`}>
-                                ✓
-                              </span>
-                              <span className="text-gray-700 dark:text-gray-300">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
 
-        {/* Floating decorative elements */}
-        <div className="absolute top-0 left-0 w-40 h-40 bg-blue-400 rounded-full filter blur-3xl opacity-10 -z-0"></div>
-        <div className="absolute bottom-0 right-0 w-60 h-60 bg-purple-500 rounded-full filter blur-3xl opacity-10 -z-0"></div>
+        {/* Roadmap Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 relative z-10">
+          {roadmapData.roadMap.map((module, index) => {
+            const row = Math.floor(index / 4);
+            const isEvenRow = row % 2 === 0;
+            const positionInRow = index % 4;
+            const delay = index * 0.1;
+
+            const alignmentClass = isEvenRow 
+              ? positionInRow % 2 === 0 ? "md:mt-0" : "md:mt-16" 
+              : positionInRow % 2 === 0 ? "md:mt-16" : "md:mt-0";
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay }}
+                className={`relative flex flex-col items-center text-center ${alignmentClass}`}
+              >
+                {/* Main Icon Button */}
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onMouseEnter={() => setActiveIndex(activeIndex === index ? null : index)}
+                  onMouseLeave={() => setActiveIndex(null)}
+                  className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-2xl bg-gradient-to-tr ${module.color} text-white shadow-xl hover:shadow-2xl transition-all cursor-pointer`}
+                >
+                  {module.icon}
+                  <div className="absolute -inset-2 rounded-full border-2 border-white/30 animate-ping opacity-0 hover:opacity-100 transition-opacity"></div>
+                </motion.div>
+
+                {/* Title & Description */}
+                <div className="mt-4 px-2">
+                  <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                    {module.title}
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
+                    {module.description}
+                  </p>
+                </div>
+
+                {/* Expandable Detail */}
+                <AnimatePresence>
+                  {activeIndex === index && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                      className="absolute top-full mt-2 w-[90vw] max-w-sm bg-white dark:bg-gray-800 p-4 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 text-left backdrop-blur-sm z-50"
+                    >
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 rotate-45 border-t border-l border-gray-200 dark:border-gray-700"></div>
+                      <h4 className="font-semibold text-base mb-2 flex items-center">
+                        <span className={`bg-gradient-to-r ${module.color} rounded-full w-5 h-5 flex items-center justify-center text-white mr-2 text-sm`}>
+                          {module.icon}
+                        </span>
+                        {module.title} Details
+                      </h4>
+                      <ul className="space-y-2">
+                        {module.items.map((item, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className={`flex-shrink-0 w-4 h-4 mt-0.5 rounded-full bg-gradient-to-br ${module.color} text-white flex items-center justify-center text-[10px] mr-2`}>
+                              ✓
+                            </span>
+                            <span className="text-xs text-gray-700 dark:text-gray-300">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Decorative Blur Lights */}
+        <div className="absolute top-0 left-0 w-40 h-40 bg-blue-400 rounded-full filter blur-3xl opacity-10 -z-10" />
+        <div className="absolute bottom-0 right-0 w-60 h-60 bg-purple-500 rounded-full filter blur-3xl opacity-10 -z-10" />
       </div>
     </section>
   );
 }
-
-
-

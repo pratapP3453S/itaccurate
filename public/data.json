@@ -702,7 +702,7 @@
     ],
     "courseDetails": {
         "best-sap-training": {
-            "title": "IT Accurate Best SAP Training Course -Fees, Placements",
+            "title": "Best SAP Training Course",
             "bgImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
             "detail": {
                 "paragraph1": "Best SAP Training by IT Accurate has well-structured SAP Training program. The SAP training Course as well as certification courses help you to maximize the productivity of your Sales, Marketing or Admin tasks by tapping into the vast resources of Salesforce. Join us, Best SAP Classes to build up your career in the booming sector and add the hot skill to your resume. Our subject expert provides the best real time projects, examples, and learnings in the SAP classes. SAP SERVER also provided by IT Accurate ! ",
@@ -803,7 +803,7 @@
             ]
         },
         "sap-abap": {
-            "title": "IT Accurate- Best SAP ABAP Training Course-Fees, Placements",
+            "title": "Best SAP ABAP Training Course",
             "bgImage": "https://plus.unsplash.com/premium_photo-1726474433745-25e7b36aaa7a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "detail": {
                 "paragraph1": "SAP ABAP Training by IT Accurate offers you the best SAP ABAP(Advanced Business Application Programming) training for freshers and experienced candidates, with expert guidance and 100% guaranteed placement assistance. Our SAP training course covers every technical topic in detail and the student is left with real-time hands-on experience.",
@@ -811,7 +811,7 @@
                 "extras": [
                     "End user 1 month (ECC / S4 HANA)",
                     "Configuration 2 months(ECC/S4 HANA)",
-                    "Configuration 2 months(ECC/S4 HANA)"
+                    "Project 1 month"
                 ]
             },
             "coveringTopics": [
@@ -974,6 +974,239 @@
                         "Fresher-specific interview strategies"
                     ],
                     "color": "from-violet-500 to-purple-600"
+                }
+            ],
+            "trainingSyllabus": [
+                {
+                    "title": "Introduction",
+                    "subpoints": [
+                        "What is SAP?",
+                        "History & Features of SAP",
+                        "SAP R/2 Architecture (Limitations of R/2 Architecture)",
+                        "SAP R/3 Architecture (Types of work processes)",
+                        "SAP R/3 Application Modules",
+                        "SAP Landscape."
+                    ],
+                    "color": "bg-blue-500",
+                    "icon": "🏛️",
+                    "description": "SAP fundamentals and architecture overview"
+                },
+                {
+                    "title": "Introduction to ABAP/4",
+                    "subpoints": [
+                        "What is ABAP?",
+                        "Logon to SAP Environment",
+                        "Transaction Codes",
+                        "Transport Organizer",
+                        "Package",
+                        "Write Statements",
+                        "System Variables",
+                        "ABAP Programming Language – Data Types – TYPE Keyword – DATA Keyword",
+                        "Programming Structure – Work area – Internal Table – Structure Etc.",
+                        "ABAP/4 Editor ( SE38 )",
+                        "Steps for Creating a Program",
+                        "Flow Of Data in R/3 Architecture",
+                        "Debugging",
+                        "– Break-Point(Static, Dynamic)",
+                        "Watch-Point",
+                        "Sub objects in ABAP Editor",
+                        "SQL Statements – Open SQL",
+                        "Native SQL",
+                        "Selection-Screen Introduction",
+                        "Selection-screen Statement",
+                        "Parameter Statement",
+                        "Select-options Statement",
+                        "Message Handling",
+                        "Introduction to Inner Join & For All Entries In",
+                        "Modularization Techniques",
+                        "Subroutine",
+                        "Function Module",
+                        "Field-Symbol",
+                        "Macro",
+                        "String Operations",
+                        "Control-Break Statements"
+                    ],
+                    "color": "bg-indigo-500",
+                    "icon": "👨‍💻",
+                    "description": "Core ABAP programming concepts and techniques"
+                },
+                {
+                    "title": "ABAP/Data Dictionary (DDIC)",
+                    "subpoints": [
+                        "Introduction to Data Dictionary Introduction",
+                        "Sub objects of Data Dictionary",
+                        "Database Table",
+                        "View – Data Type",
+                        "Type Group",
+                        "Domain",
+                        "Search Help",
+                        "Lock Object",
+                        "Structure",
+                        "Primary Key And Foreign Key",
+                        "Table Maintenance Generator"
+                    ],
+                    "color": "bg-green-500",
+                    "icon": "🗃️",
+                    "description": "Mastering SAP data structures and definitions"
+                },
+                {
+                    "title": "Business Flow",
+                    "subpoints": [
+                        "MM",
+                        "SD",
+                        "PP",
+                        "FI",
+                        "CO",
+                        "HR"
+                    ],
+                    "color": "bg-yellow-500",
+                    "icon": "🔄",
+                    "description": "Understanding SAP business process integration"
+                },
+                {
+                    "title": "ABAP Reports",
+                    "subpoints": [
+                        "Classical Reporting",
+                        "Interactive Reporting",
+                        "ALV Reporting",
+                        "Classical ALV",
+                        "Interactive ALV",
+                        "Blocked ALV",
+                        "Hierarchical ALV",
+                        "LDB (Logical Database) Reporting",
+                        "SQL Query"
+                    ],
+                    "color": "bg-red-500",
+                    "icon": "📈",
+                    "description": "Developing various types of SAP reports"
+                },
+                {
+                    "title": "ABAP Transaction",
+                    "subpoints": [
+                        "Introduction to Module-Pool/Dialog Programming",
+                        "Components of Screen",
+                        "Events In Module Pool",
+                        "Process Before Output (PBO)",
+                        "Process AfterInput (PAI)",
+                        "Process (POV) On Value-Request",
+                        "Process On HELP-Request (POH)",
+                        "Dynamic Screens",
+                        "Leave Screen",
+                        "Leave To Screen",
+                        "Call Screen",
+                        "Set Screen",
+                        "Elements in Screen Layout",
+                        "Sub screen",
+                        "Table Control",
+                        "Tab Strip Control",
+                        "Table Control (Wizard)",
+                        "Single/Multiple Field Validation",
+                        "LUW (Logical Unit Work)"
+                    ],
+                    "color": "bg-purple-500",
+                    "icon": "💻",
+                    "description": "Creating interactive transaction screens in SAP"
+                },
+                {
+                    "title": "Batch Data Communication",
+                    "subpoints": [
+                        "Introduction to BDC Technique",
+                        "BDC Methods",
+                        "Session Method",
+                        "Call Transaction Method (CTM)",
+                        "Legacy System Migration Workbench Methods",
+                        "Batch Input Recording (Session)",
+                        "IDOC BAPI",
+                        "Direct Input Method",
+                        "BDC With Table Control",
+                        "File Handling",
+                        "Application Server",
+                        "Presentation Server"
+                    ],
+                    "color": "bg-pink-500",
+                    "icon": "📤",
+                    "description": "Techniques for batch data processing in SAP"
+                },
+                {
+                    "title": "SAP Scripts",
+                    "subpoints": [
+                        "Introduction to SAP Scripts",
+                        "Components of SAP Scripts",
+                        "Function Module In Scripts",
+                        "Crating Driver Program",
+                        "Logo/Graphics in Scripts",
+                        "Modifying Standard SAP Scripts"
+                    ],
+                    "color": "bg-purple-500",
+                    "icon": "📜",
+                    "description": "Traditional SAP printing and forms technology"
+                },
+                {
+                    "title": "Smart Forms",
+                    "subpoints": [
+                        "Introduction to Smart Forms",
+                        "Smart Forms Architecture",
+                        "Smart Style",
+                        "Component of Smart Forms",
+                        "Creating Print Program",
+                        "Differences Between Smart Forms & Scripts"
+                    ],
+                    "color": "bg-teal-500",
+                    "icon": "🧠",
+                    "description": "Modern form processing in SAP"
+                },
+                {
+                    "title": "Cross Applications",
+                    "subpoints": [
+                        "Introduction to Distributed Environment",
+                        "Introduction to Cross Applications"
+                    ],
+                    "color": "bg-blue-600",
+                    "icon": "🔄",
+                    "description": "SAP integration across different applications"
+                },
+                {
+                    "title": "ALE (Application Linking Enabling)",
+                    "subpoints": [
+                        "ALE Overview",
+                        "ALE Architecture",
+                        "Logical System"
+                    ],
+                    "color": "bg-teal-500",
+                    "icon": "🔗",
+                    "description": "Configuring distributed SAP systems"
+                },
+                {
+                    "title": "IDOC (Intermediate Document)",
+                    "subpoints": [
+                        "Introduction to IDOC",
+                        "Component of IDOC",
+                        "Creating",
+                        "Message Type",
+                        "Model View / Customer Distribution Model",
+                        "PORT",
+                        "Generate Partner Profile",
+                        "Assigning IDOC Type to Message Type",
+                        "Types of IDOCs",
+                        "Standard IDOC",
+                        "Custom IDOC",
+                        "Extended IDOC"
+                    ],
+                    "color": "bg-indigo-500",
+                    "icon": "📨",
+                    "description": "Working with SAP's data exchange format"
+                },
+                {
+                    "title": "Enhancement",
+                    "subpoints": [
+                        "Introduction to Enhancement",
+                        "Types of Enhancement",
+                        "Overview User-Exits & Customer Exits",
+                        "Types of User-Exits & Customer-Exits"
+                    ],
+                    "color": "bg-pink-500",
+                    "icon": "✨",
+                    "description": "Extending standard SAP functionality"
                 }
             ]
         }

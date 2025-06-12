@@ -29,7 +29,7 @@ const TrainingCourses = () => {
 
     return (
 
-        <section className="py-7 md:py-16 dark:bg-gray-900 bg-white ">
+        <section id='training-courses' className="py-7 md:py-16 dark:bg-gray-900 bg-white ">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ const TrainingCourses = () => {
                     </h3>
                 </motion.div>
 
-                {/* for opening modal(enquire now) when clicked on enquire now*/}
+                {/* for opening modal() when clicked on */}
                 {showForm && (
                     <FreeDemoForm onClose={() => setShowForm(false)} />
                 )}

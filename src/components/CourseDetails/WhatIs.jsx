@@ -9,39 +9,43 @@ function WhatIs() {
         <section className="py-12 px-4 md:px-12 max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                 {/* Right Card - Features Grid */}
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{
-                        y: -5,
-                        rotateY: -5,
-                        transition: { duration: 0.3 }
-                    }}
-                    className="flex-1 relative bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-                    style={{
-                        transformStyle: "preserve-3d",
-                        perspective: "1000px"
-                    }}
-                >
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10" />
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        className="flex flex-col items-center"
-                    >
-                        <div className="relative">
-                            <div className="w-full h-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                                <img
-                                    src={courseDetail.bgImage}
-                                    alt={courseDetail.whatIs.name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="absolute inset-0 rounded-full border-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400 transition-all duration-300 pointer-events-none" />
-                        </div>
-                    </motion.div>
-                </motion.div>
+<motion.div
+  initial={{ opacity: 0, x: 20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.5 }}
+  className="flex-1 relative bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+>
+  {/* Gradient background overlay */}
+  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10" />
+  
+  {/* Sticky image container */}
+  <div className="sticky top-32" style={{ height: 'fit-content' }}>
+    <motion.div
+      whileHover={{ 
+        scale: 1.05,
+        rotateY: -5,
+        transition: { type: "spring", stiffness: 400, damping: 10 }
+      }}
+      className="flex flex-col items-center"
+      style={{
+        transformStyle: "preserve-3d",
+        perspective: "1000px"
+      }}
+    >
+      <div className="relative w-full" style={{ height: 'auto' }}>
+        <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+          <img
+            src={courseDetail.bgImage}
+            alt={courseDetail.whatIs.name}
+            className="w-full h-auto object-contain"
+            style={{ maxHeight: '80vh' }} // Adjust as needed
+          />
+        </div>
+        <div className="absolute inset-0 rounded-full border-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400 transition-all duration-300 pointer-events-none" />
+      </div>
+    </motion.div>
+  </div>
+</motion.div>
                 {/* Left Card - Description */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

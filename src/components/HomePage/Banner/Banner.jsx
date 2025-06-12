@@ -112,7 +112,7 @@ function Banner() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="text-center md:text-left w-full md:w-1/2 px-4 sm:px-6 lg:px-8 z-10 pt-7"
+      className="text-center md:text-left w-full md:w-1/2 px-4 sm:px-6 lg:px-8 z-10 pt-7 md:ml-16"
     >
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white">
         LEARN WITH <span className="text-blue-600 dark:text-blue-400">IT ACCURATE</span>
@@ -125,8 +125,8 @@ function Banner() {
         <motion.a
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          href="#courses"
-          className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium sm:font-semibold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md text-sm sm:text-base"
+          href="#training-courses"
+          className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:bg-blue-700 hoverhover:bg-blue-700 text-white font-medium sm:font-semibold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-md text-sm sm:text-base"
         >
           📄 Explore Courses
         </motion.a>
