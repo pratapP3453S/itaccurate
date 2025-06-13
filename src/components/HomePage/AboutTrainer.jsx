@@ -46,7 +46,7 @@ const TrainerDetails = () => {
         {trainerPoints.map((point) => (
           <div
             key={point.id}
-            className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-800 border-l-4 border-blue-400 dark:border-emerald-400 rounded-xl p-6 hover:shadow-md transition duration-300 ease-in-out hover:border-blue-600 dark:hover:border-emerald-300"
+            className="bg-gradient-to-r from-blue-100 to-indigo-200 dark:from-gray-700 dark:to-gray-800 border-l-4 border-blue-400 dark:border-emerald-400 rounded-xl p-6 hover:shadow-md transition duration-300 ease-in-out hover:border-blue-600 dark:hover:border-emerald-300"
           >
             <p className="text-gray-800 dark:text-gray-200 text-base leading-relaxed">
               {point.text}

@@ -13,10 +13,15 @@ import JobPreparation from './JobPreparation';
 import { useLocation } from 'react-router-dom';
 import CertificationSection from './CertificationSection';
 import Modules from './Modules';
+import PlacedStudents from "../HomePage/PlacedStudents"
+import FAQSection from './FAQSection';
+import ContactUs from '../ContactUs/ContactUs';
+import CompanyMarquee from './CompanyMarquee';
 
 function AboutCourse() {
   const courseDetail = useLoaderData();
   const location = useLocation();
+  const { name } = courseDetail;
 
   return (
     <div className='relative bg-white dark:bg-gray-900 transition-colors duration-300'>
@@ -45,10 +50,10 @@ function AboutCourse() {
             className="w-full md:w-[85%] lg:w-[88%] text-center md:text-left z-20 pt-5"
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-700 dark:text-black">
-                <span className='text-blue-600 dark:text-indigo-800'>IT Accurate - </span>
-                  {courseDetail.title}
-                <span className='text-blue-600 dark:text-indigo-800'> - Fees, Placements</span>
-              </h1>
+              <span className='text-blue-600 dark:text-indigo-800'>IT Accurate - </span>
+              {courseDetail.title}
+              <span className='text-blue-600 dark:text-indigo-800'> - Fees, Placements</span>
+            </h1>
             <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 dark:text-gray-800 mb-4 sm:mb-5">
               {courseDetail.detail.paragraph1}
             </p>
@@ -89,7 +94,7 @@ function AboutCourse() {
           </div>
         </div>
       </section>
-      
+
       {/* Covering Topics Section */}
       <TopicsSection courseDetail={courseDetail} />
 
@@ -110,9 +115,22 @@ function AboutCourse() {
       {/* {!(location.pathname.slice(1) === "best-sap-training") && (<JobPreparation />)} */}
       <JobPreparation />
 
-      <CertificationSection certificateImg={null} courseDetail={courseDetail} />
+      <CertificationSection certificateImg={null} courseName={name} />
 
-<Modules />
+      <Modules />
+<div className='-mt-16'>
+<PlacedStudents className={`text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 dark:text-white`} />
+</div>
+
+<FAQSection />
+
+    <div className='py-11 bg-gray-100 dark:bg-slate-900'>
+      <img className="md:w-[70vw] m-auto w-10vw" src="./addons1.png" alt="addon" />
+    </div>
+
+      <CompanyMarquee />
+
+      <ContactUs />
     </div>
   );
 }

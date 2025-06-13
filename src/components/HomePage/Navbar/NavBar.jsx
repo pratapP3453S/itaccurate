@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
     FiSun,
     FiMoon,
@@ -20,6 +20,7 @@ import {
 import { useSelector } from 'react-redux';
 import { HeaderSkeleton } from '../../ui/SkeletonEffects/HeaderSkeleton';
 import { Link } from 'react-router-dom';
+import MobileNavBar from './MobileNavBar';
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,8 +30,15 @@ const NavBar = () => {
     const [activeSubMenu, setActiveSubMenu] = useState(null);
     const [mobileActiveMenu, setMobileActiveMenu] = useState(null);
     const [mobileActiveSubMenu, setMobileActiveSubMenu] = useState(null);
-    const [hoverTimeout, setHoverTimeout] = useState(null);
     const [isHoveringSubmenu, setIsHoveringSubmenu] = useState(false);
+    const [hoverTimeout, setHoverTimeout] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSubMenuEnter = (courseTitle) => {
+        clearTimeout(hoverTimeout);
+        setActiveSubMenu(courseTitle);
+        setIsHoveringSubmenu(true);
+    };
 
     // Check for saved theme preference
     useEffect(() => {
@@ -69,12 +77,42 @@ const NavBar = () => {
         };
     }, []);
 
-    const handleMouseLeave = (hasDropdown, callback) => {
-        setTimeout(() => {
-            if (!isHoveringDropdown && !isHoveringSubmenu) {
-                callback();
+    const handleMainMenuEnter = (menuName) => {
+        clearTimeout(hoverTimeout);
+        setActiveMainMenu(menuName);
+    };
+
+    const handleMainMenuLeave = () => {
+        // Start timeout when leaving main menu item
+        const timeout = setTimeout(() => {
+            if (!isHoveringSubmenu) {
+                setActiveMainMenu(null);
+                setActiveSubMenu(null);
             }
-        }, 150);
+        }, 200);
+        setHoverTimeout(timeout);
+    };
+
+    const handleDropdownEnter = () => {
+        clearTimeout(hoverTimeout);
+        setIsHoveringDropdown(true);
+    };
+
+    const handleDropdownLeave = () => {
+        const timeout = setTimeout(() => {
+            if (!isHoveringSubmenu) {
+                setActiveMainMenu(null);
+                setActiveSubMenu(null);
+            }
+            setIsHoveringDropdown(false);
+        }, 200);
+        setHoverTimeout(timeout);
+    };
+
+
+    const handleSubMenuLeave = () => {
+        setIsHoveringSubmenu(false);
+        // Don't close immediately - let parent handle it
     };
 
     const menuItems = useSelector((state) => state.navbar.menuItems);
@@ -141,20 +179,13 @@ const NavBar = () => {
                                 <div
                                     key={item.name}
                                     className="relative group"
-                                    onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                                    onClick={(e) => e.stopPropagation()}
                                 >
                                     <a
                                         href={item.path}
                                         className="px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-gray-800 hover:bg-gray-100 transition-colors duration-200 flex items-center"
-                                        onMouseEnter={() => item.hasDropdown && setActiveMainMenu(item.name)}
-                                        onMouseLeave={() => {
-                                            if (item.hasDropdown) {
-                                                handleMouseLeave(item.hasDropdown, () => {
-                                                    setActiveMainMenu(null);
-                                                    setActiveSubMenu(null);
-                                                });
-                                            }
-                                        }}
+                                        onMouseEnter={() => item.hasDropdown && handleMainMenuEnter(item.name)}
+                                        onMouseLeave={() => item.hasDropdown && handleMainMenuLeave()}
                                     >
                                         <span className="mr-2">{item.icon}</span>
                                         {item.name}
@@ -176,20 +207,11 @@ const NavBar = () => {
                                             }}
                                             transition={{ duration: 0.2, ease: 'easeOut' }}
                                             className={`absolute left-0 mt-1 ${item.name === 'Courses'
-                                                    ? 'lg:left-[-30vh] w-[700px] p-4 grid grid-cols-2 gap-2'
-                                                    : 'w-56 p-2'
+                                                ? 'lg:left-[-30vh] w-[700px] p-4 grid grid-cols-2 gap-2'
+                                                : 'w-56 p-2'
                                                 } bg-slate-50/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-lg shadow-xl z-50 border border-gray-200/50 dark:border-gray-700/50`}
-                                            onMouseEnter={() => {
-                                                setActiveMainMenu(item.name);
-                                                setIsHoveringDropdown(true);
-                                            }}
-                                            onMouseLeave={() => {
-                                                setIsHoveringDropdown(false);
-                                                handleMouseLeave(true, () => {
-                                                    setActiveMainMenu(null);
-                                                    setActiveSubMenu(null);
-                                                });
-                                            }}
+                                            onMouseEnter={handleDropdownEnter}
+                                            onMouseLeave={handleDropdownLeave}
                                         >
                                             {/* Courses Dropdown */}
                                             {item.name === 'Courses' && (
@@ -198,12 +220,8 @@ const NavBar = () => {
                                                         <div
                                                             key={course.title}
                                                             className="relative group"
-                                                            onMouseEnter={() => course.subMenu && setActiveSubMenu(course.title)}
-                                                            onMouseLeave={() => {
-                                                                handleMouseLeave(course.subMenu, () => {
-                                                                    setActiveSubMenu(null);
-                                                                });
-                                                            }}
+                                                            onMouseEnter={() => course.subMenu && handleSubMenuEnter(course.title)}
+                                                            onMouseLeave={handleSubMenuLeave}
                                                         >
                                                             <a
                                                                 href={`#${course.title.toLowerCase().replace(/\s+/g, '-')}`}
@@ -231,15 +249,9 @@ const NavBar = () => {
                                                                     }}
                                                                     transition={{ duration: 0.2, ease: 'easeOut' }}
                                                                     className={`absolute ${course.position === 'left' ? 'right-full mr-2' : 'left-full ml-2'
-                                                                        } top-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 z-50 border border-gray-200/50 dark:border-gray-700/50
-                          max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800`}
+                                                                        } top-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 z-50 border border-gray-200/50 dark:border-gray-700/50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800`}
                                                                     onMouseEnter={() => setIsHoveringSubmenu(true)}
-                                                                    onMouseLeave={() => {
-                                                                        setIsHoveringSubmenu(false);
-                                                                        handleMouseLeave(true, () => {
-                                                                            setActiveSubMenu(null);
-                                                                        });
-                                                                    }}
+                                                                    onMouseLeave={handleSubMenuLeave}
                                                                 >
                                                                     <h4 className="font-semibold text-gray-800 dark:text-white mb-2 px-2">
                                                                         {course.title} Courses
@@ -292,6 +304,9 @@ const NavBar = () => {
                                     type="text"
                                     className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 dark:bg-gray-700 bg-gray-100 dark:text-gray-300 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm transition-all duration-200"
                                     placeholder="Search..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+ 
                                 />
                             </div>
 
@@ -339,154 +354,16 @@ const NavBar = () => {
                         </div>
                     </div>
 
-                    {/* Mobile Navigation */}
-                    <AnimatePresence>
-                        {isOpen && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="md:hidden mt-2 overflow-hidden"
-                            >
-                                <div className="pt-2 pb-4 space-y-1">
-                                    {navItems.map((item) => (
-                                        <div key={item.name}>
-                                            <button
-                                                className={`w-full text-left px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-gray-800 hover:bg-gray-100 transition-colors flex items-center justify-between ${mobileActiveMenu === item.name ? 'dark:bg-gray-800 bg-gray-100' : ''}`}
-                                                onClick={() => {
-                                                    if (item.hasDropdown) {
-                                                        if (mobileActiveMenu === item.name) {
-                                                            setMobileActiveMenu(null);
-                                                            setMobileActiveSubMenu(null);
-                                                        } else {
-                                                            setMobileActiveMenu(item.name);
-                                                            setMobileActiveSubMenu(null);
-                                                        }
-                                                    } else {
-                                                        setIsOpen(false);
-                                                    }
-                                                }}
-                                            >
-                                                <div className="flex items-center">
-                                                    <span className="mr-2">{item.icon}</span>
-                                                    {item.name}
-                                                </div>
-                                                {item.hasDropdown && (
-                                                    <span>
-                                                        {mobileActiveMenu === item.name ? <FiChevronUp size={16} /> : <FiChevronDown size={16} />}
-                                                    </span>
-                                                )}
-                                            </button>
-
-                                            {/* Mobile Courses Dropdown */}
-                                            {item.hasDropdown && mobileActiveMenu === item.name && item.name === 'Courses' && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: 'auto' }}
-                                                    exit={{ opacity: 0, height: 0 }}
-                                                    transition={{ duration: 0.2 }}
-                                                    className="ml-6 mt-1 mb-2 space-y-2"
-                                                >
-                                                    {menuItems.map((course) => (
-                                                        <div key={course.title}>
-                                                            <button
-                                                                className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-between ${mobileActiveSubMenu === course.title ? 'dark:bg-gray-700 bg-gray-100' : ''}`}
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    if (course.subMenu) {
-                                                                        if (mobileActiveSubMenu === course.title) {
-                                                                            setMobileActiveSubMenu(null);
-                                                                        } else {
-                                                                            setMobileActiveSubMenu(course.title);
-                                                                        }
-                                                                    } else {
-                                                                        setIsOpen(false);
-                                                                    }
-                                                                }}
-                                                            >
-                                                                <div className="flex items-center">
-                                                                    <span className="mr-2">{course.icon}</span>
-                                                                    <div>
-                                                                        <div className="font-medium">{course.title}</div>
-                                                                        <div className="text-xs text-gray-500 dark:text-gray-400">{course.description}</div>
-                                                                    </div>
-                                                                </div>
-                                                                {course.subMenu && (
-                                                                    <FiArrowRight className="ml-2 text-gray-400" />
-                                                                )}
-                                                            </button>
-
-                                                            {/* Mobile Sub-menu Dropdown */}
-                                                            {course.subMenu && mobileActiveSubMenu === course.title && (
-                                                                <motion.div
-                                                                    initial={{ opacity: 0, height: 0 }}
-                                                                    animate={{ opacity: 1, height: 'auto' }}
-                                                                    exit={{ opacity: 0, height: 0 }}
-                                                                    transition={{ duration: 0.2 }}
-                                                                    className="ml-4 mt-1 space-y-1"
-                                                                >
-                                                                    <h4 className="px-3 py-1 text-sm font-semibold text-gray-800 dark:text-white">{course.title} Courses</h4>
-                                                                    {course.subMenu.map((subItem) => (
-                                                                        <Link
-                                                                            key={subItem.title}
-                                                                            to={subItem.link}
-                                                                            // href={`#${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                                                                            className="block px-3 py-2 rounded-md text-sm dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors"
-                                                                            onClick={(e) => {
-                                                                                e.stopPropagation();
-                                                                                setIsOpen(false);
-                                                                            }}
-                                                                        >
-                                                                            {subItem.title}
-                                                                        </Link>
-                                                                    ))}
-                                                                </motion.div>
-                                                            )}
-                                                        </div>
-                                                    ))}
-                                                </motion.div>
-                                            )}
-
-                                            {/* Mobile Placements Dropdown */}
-                                            {item.hasDropdown && mobileActiveMenu === item.name && item.name === 'Placements' && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: 'auto' }}
-                                                    exit={{ opacity: 0, height: 0 }}
-                                                    transition={{ duration: 0.2 }}
-                                                    className="ml-6 mt-1 mb-2 space-y-1"
-                                                >
-                                                    {item.subMenu.map((subItem) => (
-                                                        <a
-                                                            key={subItem}
-                                                            href={`#${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                                                            className="block px-3 py-2 rounded-md text-sm dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-100 transition-colors"
-                                                            onClick={() => setIsOpen(false)}
-                                                        >
-                                                            {subItem}
-                                                        </a>
-                                                    ))}
-                                                </motion.div>
-                                            )}
-                                        </div>
-                                    ))}
-
-                                    {/* Mobile Search */}
-                                    <div className="px-3 pt-2 relative">
-                                        <div className="absolute inset-y-0 left-5 pl-3 flex items-center pointer-events-none">
-                                            <FiSearch className="h-5 w-5 text-gray-400" />
-                                        </div>
-                                        <input
-                                            type="text"
-                                            className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 dark:bg-gray-700 bg-gray-100 dark:text-gray-300 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm"
-                                            placeholder="Search..."
-                                        />
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    {/* Mobile Navigation - Now using the separate component */}
+                    <MobileNavBar
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        navItems={navItems}
+                        mobileActiveMenu={mobileActiveMenu}
+                        setMobileActiveMenu={setMobileActiveMenu}
+                        mobileActiveSubMenu={mobileActiveSubMenu}
+                        setMobileActiveSubMenu={setMobileActiveSubMenu}
+                    />
                 </div>
             </div>
         </header>

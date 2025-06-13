@@ -39,7 +39,7 @@ const TrainingCourses = () => {
                     className="text-center mb-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-gray-800">
-                        Our Training Courses
+                        Our Training <span className='text-blue-600'>Courses</span>
                     </h2>
                     <h3 className="text-xl md:text-2xl max-w-3xl mx-auto dark:text-gray-300 text-gray-600">
                         Be certified by global certifications and increase your understanding

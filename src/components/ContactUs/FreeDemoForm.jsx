@@ -85,7 +85,7 @@ export default function FreeDemoForm({ onClose }) {
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
               <div className="md:flex">
                 {/* Left side - Info */}
-                <div className="md:w-1/2 bg-gradient-to-br from-blue-500 to-purple-500 p-6 md:p-8 text-white flex flex-col justify-center relative overflow-hidden">
+                <div className="md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600 p-6 md:p-8 text-white flex flex-col justify-center relative overflow-hidden">
                   <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full"></div>
                   <div className="absolute -right-20 -bottom-20 w-48 h-48 bg-white/5 rounded-full"></div>
                   
@@ -193,7 +193,7 @@ export default function FreeDemoForm({ onClose }) {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+                      className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       Submit Now <FiArrowRight className="inline ml-2" />
                     </motion.button>

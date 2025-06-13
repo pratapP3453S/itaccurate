@@ -100,8 +100,8 @@ const SalaryHikeSection = () => {
       {/* Apply Now Button */}
       <div className="mt-3 sm:mt-4 md:mt-6 flex justify-center md:justify-start">
         <a href="/contact" className="group relative inline-block">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
-          <button className="relative px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm sm:text-base font-semibold rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-700 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
+          <button className="relative px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-sm sm:text-base font-semibold rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
             Apply Now
             <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
           </button>

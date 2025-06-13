@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 import { useSelector } from "react-redux";
 import FreeDemoForm from "../ContactUs/FreeDemoForm";
 
-const PlacedStudents = () => {
+const PlacedStudents = ({ className }) => {
   const [showDemoForm, setShowDemoForm] = useState(false);
 
   const buttons = [
@@ -33,7 +33,7 @@ const PlacedStudents = () => {
 
   return (
     <div className="px-4 py-16 text-center mt-16 bg-gray-100 dark:bg-gray-800">
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-gray-800 dark:text-white">
+      <h2 className={`${className} || text-3xl md:text-4xl font-extrabold mb-8 text-gray-800 dark:text-white`}>
         Students Who <span className="text-blue-600 dark:text-blue-400">Cracked</span> Their Dream Jobs
         <br />
         <span className="text-lg text-gray-600 dark:text-gray-300">at Top MNC Companies</span>
@@ -116,7 +116,7 @@ const PlacedStudents = () => {
         {buttons.map((btn, i) => (
           btn.href ? (
             <a key={i} href={btn.href} className="group relative block w-fit">
-              <button className="relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg dark:from-blue-500 dark:to-purple-500">
+              <button className="relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 {btn.label}
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -127,7 +127,7 @@ const PlacedStudents = () => {
             <div key={i} className="group relative block w-fit">
               <button
                 onClick={btn.onClick}
-                className="relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg dark:from-blue-500 dark:to-purple-500"
+                className="relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 {btn.label}
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">

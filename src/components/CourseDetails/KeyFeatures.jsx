@@ -19,11 +19,11 @@ function KeyFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-10 sm:mb-12 lg:mb-16 relative"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10 sm:mb-12 lg:mb-16 relative"
         >
           <span className="relative inline-block">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-              Key Features of {courseDetail.whatIs.name} Training
+              <span className='text-slate-800 dark:text-white'>Key Features of </span>{courseDetail.whatIs.name} Training
             </span>
           </span>
         </motion.h2>

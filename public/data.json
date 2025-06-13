@@ -206,48 +206,48 @@
             "title": "SAP",
             "description": "Start Learning SAP, And Land Your First Dream Job.",
             "cta": "Enquire Now",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "https://www.nagarro.com/hubfs/SAP%20Services/sap-s4hana-blog.jpg",
             "color": "from-blue-500 to-blue-700",
             "link": "/best-sap-training"
         },
         {
             "title": "SALESFORCE",
             "description": "Master Salesforce by completing Our Training Career Advancement Program.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C7.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-purple-500 to-purple-700",
             "link": "/salesforce-training"
         },
         {
             "title": "DATA ANALYTICS",
             "description": "Accelerate Your Career with Data Analytics Training and Certification program.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C11.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-cyan-500 to-cyan-700",
             "link": "/best-data-analytics-training"
         },
         {
             "title": "DATA SCIENCE",
             "description": "Become a Certified Data Scientist with Our Training courses.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C10.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-green-500 to-green-700",
             "link": "/best-data-science-training"
         },
         {
             "title": "FULL STACK DEVELOPER",
             "description": "Unlock limitless opportunities with Full Stack Development mastery.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C4.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-red-500 to-red-700",
             "link": "/full-stack-developer"
         },
         {
             "title": "DEVOPS",
             "description": "Master DevOps with AWS and Linux Training: Unlock Your Full Potential.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C2.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-yellow-500 to-yellow-700",
             "link": "/best-devops-training"
         },
         {
@@ -255,47 +255,47 @@
             "description": "Transform Your Future: Attain ML Certification through Our Training Courses.",
             "bgImage": "./coursesImages/C1.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-pink-500 to-pink-700",
             "link": "/best-machine-learning-training"
         },
         {
             "title": "AWS",
             "description": "Empower Your Expertise: AWS with Our Comprehensive Training Courses.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C5.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-orange-500 to-orange-700",
             "link": "/best-aws-training"
         },
         {
             "title": "PYTHON",
             "description": "Empower Your Future with Python Training Excellence.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C3.webp",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-teal-500 to-teal-700",
             "link": "/python"
         },
         {
             "title": "BUSINESS ANALYTICS",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-lime-500 to-lime-700",
             "description": "Unlock the Power of Data with Business Analytics Training courses.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C6.webp",
             "link": "/best-business-analytics-training"
         },
         {
             "title": "AI & ML",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-emerald-500 to-emerald-700",
             "description": "Empower Your Future: Become a Certified AI and ML Expert with Our Training Courses.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C8.webp",
             "link": "/best-ai-ml-training"
         },
         {
             "title": "SHARE MARKET",
             "cta": "Enquire Now",
-            "color": "from-blue-500 to-blue-700",
+            "color": "from-fuchsia-500 to-fuchsia-700",
             "description": "Unlock the potential of your investments with expert market insights.",
-            "bgImage": "./coursesImages/C1.webp",
+            "bgImage": "./coursesImages/C9.webp",
             "link": "/sharemarket"
         }
     ],
@@ -702,6 +702,7 @@
     ],
     "courseDetails": {
         "best-sap-training": {
+            "name": "SAP",
             "title": "Best SAP Training Course",
             "bgImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
             "detail": {
@@ -803,6 +804,7 @@
             ]
         },
         "sap-abap": {
+            "name": "SAP ABAP",
             "title": "Best SAP ABAP Training Course",
             "bgImage": "https://plus.unsplash.com/premium_photo-1726474433745-25e7b36aaa7a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "detail": {

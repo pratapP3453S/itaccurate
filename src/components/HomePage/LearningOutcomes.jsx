@@ -31,7 +31,7 @@ export function LearningOutcomes() {
                 {LearningOutcomesData.map((item, index) => (
                     <CardContainer key={index} className="">
                         <CardBody 
-                            className="py-0 bg-gradient-to-r from-blue-100 to-purple-100 backdrop-blur-2xl z-0 
+                            className="py-0 bg-gradient-to-r from-blue-100 to-indigo-200 backdrop-blur-2xl z-0 
              dark:bg-gradient-to-tr dark:from-gray-600 dark:to-gray-800 
              dark:border-white/[0.2] border border-black/[0.1] 
              relative group/card hover:shadow-lg dark:hover:shadow-emerald-500/[0.1] 

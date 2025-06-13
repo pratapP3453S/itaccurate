@@ -41,7 +41,7 @@ export default function ReachUsForm() {
                 <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
                     <div className="flex flex-col md:flex-row-reverse">
                         {/* Right side - Info (visual section) */}
-                        <div className="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 dark:from-blue-700 dark:to-purple-800 p-6 md:p-8 text-white relative overflow-hidden">
+                        <div className="md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-700 dark:from-blue-700 dark:to-indigo-800 p-6 md:p-8 text-white relative overflow-hidden">
                             {/* Decorative elements */}
                             <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full"></div>
                             <div className="absolute -right-20 -bottom-20 w-48 h-48 bg-white/5 rounded-full"></div>

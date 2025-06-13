@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaCertificate, FaChartLine, FaAward } from "react-icons/fa";
 
-const CertificationSection = ({ courseDetail }) => {
+const CertificationSection = ({ courseName }) => {
   const certificationPoints = [
     {
       icon: <FaCertificate className="text-white" />,
@@ -27,7 +27,7 @@ const CertificationSection = ({ courseDetail }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="max-w-full px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+      className="max-w-full px-4 sm:px-6 lg:px-8 py-16 md:py-24 dark:bg-[#161338] bg-blue-50"
     >
       <div className="text-center mb-16">
         <motion.span 
@@ -42,10 +42,10 @@ const CertificationSection = ({ courseDetail }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="text-4xl md:text-5xl font-bold mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4"
         >
           <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-transparent bg-clip-text">
-            {courseDetail.title.slice(5)} Certification
+            {courseName} <span className="text-slate-800 dark:text-white">Certification</span>
           </span>
         </motion.h2>
       </div>

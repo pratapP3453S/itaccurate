@@ -44,7 +44,7 @@ const CompanyPartnersRatings = () => {
     md:mt-[12vh] lg:py-[7vh] dark:bg-gray-800 bg-gray-100"> 
             <div className="container mx-auto px-4 mb-8 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-800 mb-2">
-                    Our Valued Partners
+                    Our Valued <span className='text-blue-600'>Partners</span>
                 </h2>
                 <p className="text-lg dark:text-gray-300 text-gray-600">
                     Collaborating with industry leaders to deliver excellence

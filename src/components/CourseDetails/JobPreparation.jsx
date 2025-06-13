@@ -82,7 +82,7 @@ const JobPreparation = () => {
   };
 
   return (
-    <section className="w-full px-4 py-20 dark:text-white bg-gradient-to-b from-slate-50 to-slate-100 dark:from-zinc-800 dark:to-zinc-900">
+    <section className="w-full px-4 py-20 dark:text-white bg-gradient-to-b from-slate-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,9 +93,9 @@ const JobPreparation = () => {
           <span className="inline-block text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">
             CAREER ACCELERATOR
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
-              Your Journey to Professional Success
+              <span className="text-slate-800 dark:text-white">Your Journey to</span> Professional Success
             </span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">

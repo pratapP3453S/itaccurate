@@ -136,7 +136,7 @@ const ContactUs = ({ initialLocation = "nagpur" }) => {
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                 <button
                   onClick={() => setIsFormVisible(true)}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg shadow-md transition-all duration-300"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium rounded-lg shadow-md transition-all duration-300"
                 >
                   Show Contact Form
                 </button>
@@ -216,7 +216,7 @@ const ContactUs = ({ initialLocation = "nagpur" }) => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg shadow-md transition-all duration-300 ${isSubmitting ? "opacity-75" : ""
+                    className={`w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-medium rounded-lg shadow-md transition-all duration-300 ${isSubmitting ? "opacity-75" : ""
                       }`}
                   >
                     {isSubmitting ? (

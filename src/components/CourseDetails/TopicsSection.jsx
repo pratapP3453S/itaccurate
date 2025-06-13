@@ -38,9 +38,9 @@ function TopicsSection({ courseDetail }) {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold mb-10 sm:mb-12 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600 relative z-10"
+        className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-10 sm:mb-12 lg:mb-16 bg-clip-text text-transparent bg-slate-800 dark:bg-white relative z-10"
       >
-        All the Topics Will Be Covered in Detail and Also Include:
+        All the Topics Will Be Covered in Detail and Also Include
       </motion.h1>
 
       <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 relative z-10">
