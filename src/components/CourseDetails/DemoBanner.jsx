@@ -3,8 +3,8 @@ import { FiUser, FiPhone, FiArrowRight } from 'react-icons/fi';
 
 function DemoBanner() {
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 md:-mt-16 mb-5">
-      <div className="relative max-w-7xl mx-auto bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 rounded-2xl shadow-xl overflow-hidden">
+    <div className="w-full px-4 sm:px-6 lg:px-8 md:-mt-5 mb-5">
+      <div className="relative max-w-7xl mx-auto bg-gradient-to-r from-blue-500 to-indigo-700 rounded-2xl shadow-xl overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-white/10" />
         <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-white/10" />
