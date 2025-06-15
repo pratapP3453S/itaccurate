@@ -147,8 +147,8 @@ export default function RoadMap() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600 inline-block">
-            Roadmap to Learn {roadmapData.whatIs.name}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent text-gray-800 dark:text-white inline-block">
+            <span className="text-gray-800 dark:text-white">Roadmap to Learn </span> <span className="text-blue-600">{roadmapData.whatIs.name}</span>
           </h2>
         </div>
 
@@ -157,7 +157,7 @@ export default function RoadMap() {
           {/* Top Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-32 relative z-10">
             {roadmapData.roadMap.slice(0, 4).map((module, index) => (
-              <RoadmapItem 
+              <RoadmapItem
                 key={index}
                 module={module}
                 index={index}
@@ -169,32 +169,26 @@ export default function RoadMap() {
             ))}
           </div>
 
-          {/* Central 3D Pipeline */}
+          {/* Central 3D Main Pipeline */}
           <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 h-2 hidden md:block z-0">
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent rounded-full mix-blend-overlay"></div>
-                <div className="absolute inset-0 border-t border-b border-white/20 rounded-full"></div>
-                <div className="absolute inset-0 overflow-hidden rounded-full">
-                  <motion.div 
-                    initial={{ x: "-100%" }}
-                    animate={{ x: "100%" }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity, 
-                      ease: "linear",
-                      repeatDelay: 0
-                    }}
-                    className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-white/30 via-white/10 to-transparent"
-                  />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-2xl overflow-hidden">
+                {/* Shimmer effect */}
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "100%" }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-white/40 via-white/20 to-transparent opacity-50"
+                />
               </div>
             </div>
           </div>
 
+
           {/* Connection Pipes */}
+          {/* Animated Connection Lines */}
           {connectionsVisible && (
-            <div className="absolute left-0 right-0 top-0 bottom-0 hidden md:block pointer-events-none z-0">
+            <div className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none hidden md:block z-0">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="pipeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -202,58 +196,58 @@ export default function RoadMap() {
                     <stop offset="50%" stopColor="#8b5cf6" />
                     <stop offset="100%" stopColor="#ec4899" />
                   </linearGradient>
-                  <marker 
-                    id="pipeEnd" 
-                    markerWidth="5" 
-                    markerHeight="5" 
-                    refX="2.5" 
-                    refY="2.5"
-                    orient="auto"
-                  >
-                    <circle cx="2.5" cy="2.5" r="2" fill="url(#pipeGradient)" />
-                  </marker>
                 </defs>
-                
-                {/* Main horizontal pipeline */}
+
+                {/* Main Pipeline */}
                 <path
                   d="M10,50 L90,50"
                   stroke="url(#pipeGradient)"
-                  strokeWidth="1.2"
+                  strokeWidth="1.5"
                   fill="none"
                   strokeLinecap="round"
                 />
-                
-                {/* Vertical connection pipes */}
+
+                {/* Child Pipes with Icons */}
                 {roadmapData.roadMap.map((_, index) => {
                   const col = index % 4;
                   const x = 12.5 + (col * 25);
-                  const isTopRow = index < 4;
-                  const y1 = isTopRow ? 20 : 80; // Adjusted connection points
-                  const y2 = 50;
-                  
+                  const isTop = index < 4;
+                  const yStart = isTop ? 20 : 80;
+                  const yEnd = 50;
+
                   return (
-                    <motion.path
-                      key={index}
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.8, delay: index * 0.15 }}
-                      d={`M${x},${y1} L${x},${y2}`}
-                      stroke="url(#pipeGradient)"
-                      strokeWidth="0.8"
-                      fill="none"
-                      strokeLinecap="round"
-                      markerEnd="url(#pipeEnd)"
-                    />
+                    <g key={index}>
+                      <motion.path
+                        d={`M${x},${yStart} L${x},${yEnd}`}
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.6, delay: index * 0.15 }}
+                        stroke="url(#pipeGradient)"
+                        strokeWidth="0.8"
+                        fill="none"
+                        strokeLinecap="round"
+                      />
+                      <motion.circle
+                        cx={x}
+                        cy={yStart}
+                        r="1.5"
+                        fill="white"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.15 + 0.4, duration: 0.4 }}
+                      />
+                    </g>
                   );
                 })}
               </svg>
             </div>
           )}
 
+
           {/* Bottom Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-32 relative z-10">
             {roadmapData.roadMap.slice(4, 8).map((module, index) => (
-              <RoadmapItem 
+              <RoadmapItem
                 key={index + 4}
                 module={module}
                 index={index + 4}
@@ -268,7 +262,7 @@ export default function RoadMap() {
 
         {/* Decorative Blur Lights */}
         <div className="absolute top-0 left-0 w-40 h-40 bg-blue-400 rounded-full filter blur-3xl opacity-10 -z-10" />
-        <div className="absolute bottom-0 right-0 w-60 h-60 bg-purple-500 rounded-full filter blur-3xl opacity-10 -z-10" />
+        <div className="absolute bottom-0 right-0 w-60 h-60 bg-indigo-500 rounded-full filter blur-3xl opacity-10 -z-10" />
       </div>
     </section>
   );
@@ -287,20 +281,26 @@ const RoadmapItem = ({ module, index, activeIndex, setActiveIndex, position, tot
       style={{ zIndex: zIndexOffset }} // Dynamic z-index based on position
     >
       {/* Connection Dot */}
-      <div className="absolute hidden md:block"
+      {/* Data Icon at Pipe End */}
+      <div className="absolute hidden md:flex items-center justify-center"
         style={{
-          top: position === "top" ? "calc(100% + 16px)" : "auto",
-          bottom: position === "bottom" ? "calc(100% + 16px)" : "auto",
+          top: position === "top" ? "calc(100% + 30px)" : "auto",
+          bottom: position === "bottom" ? "calc(100% + 30px)" : "auto",
           left: "50%",
           transform: "translateX(-50%)",
-          width: "12px",
-          height: "12px",
-          borderRadius: "50%",
-          background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
-          zIndex: 5,
-          boxShadow: "0 0 0 4px rgba(255,255,255,0.2)"
+          width: "24px",
+          height: "24px",
+          borderRadius: "9999px",
+          background: "linear-gradient(to bottom right, #3b82f6, #ec4899)",
+          color: "white",
+          fontSize: "14px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          zIndex: 10,
         }}
-      />
+      >
+        📊
+      </div>
+
 
       {/* Main Icon Button */}
       <motion.div
