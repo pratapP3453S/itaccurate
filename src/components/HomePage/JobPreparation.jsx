@@ -72,7 +72,7 @@ const JobPreparation = () => {
 
   return (
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12 text-gray-800 dark:text-white">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
         Your Journey to <span className="text-blue-600 dark:text-blue-400">Professional Success</span>
       </h2>
 

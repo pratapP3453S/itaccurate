@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLoaderData } from 'react-router-dom';
 
-const TrainingSyllabus = () => {
+const TrainingSyllabus = ({ syllabus }) => {
     const [activeSection, setActiveSection] = useState(0);
     const [isHovering, setIsHovering] = useState(null);
-    const trainingData = useLoaderData();
-
-    const syllabus = trainingData.trainingSyllabus;
+    
+    // Filter out the first item if needed (assuming it's a header)
+    const filteredData = syllabus.slice(1);
+    
+    // Calculate progress correctly (0-100%)
+    const progress = Math.min(100, Math.max(0, ((activeSection + 1) / filteredData.length) * 100));
 
     const handleNext = () => {
-        if (activeSection < syllabus.length - 1) {
+        if (activeSection < filteredData.length - 1) {
             setActiveSection((prev) => prev + 1);
         }
     };
@@ -21,10 +23,72 @@ const TrainingSyllabus = () => {
         }
     };
 
-    const progress = ((activeSection + 1) / syllabus.length) * 100;
+const colorMap = {
+  // Blues
+  blue: 'bg-blue-500',
+  'blue-400': 'bg-blue-400',
+  'blue-600': 'bg-blue-600',
+  sky: 'bg-sky-500',
+  cyan: 'bg-cyan-500',
+  
+  // Purples/Violets
+  purple: 'bg-purple-500',
+  violet: 'bg-violet-500',
+  indigo: 'bg-indigo-500',
+  'indigo-600': 'bg-indigo-600',
+  
+  // Pinks/Reds
+  pink: 'bg-pink-500',
+  fuchsia: 'bg-fuchsia-500',
+  rose: 'bg-rose-500',
+  red: 'bg-red-500',
+  
+  // Greens
+  green: 'bg-green-500',
+  emerald: 'bg-emerald-500',
+  teal: 'bg-teal-500',
+  lime: 'bg-lime-500',
+  
+  // Yellows/Oranges
+  yellow: 'bg-yellow-500',
+  amber: 'bg-amber-500',
+  orange: 'bg-orange-500',
+  
+  // Grayscale
+  gray: 'bg-gray-500',
+  slate: 'bg-slate-500',
+  zinc: 'bg-zinc-500',
+  neutral: 'bg-neutral-500',
+  stone: 'bg-stone-500',
+  
+  // Special cases
+  'gradient-blue': 'bg-gradient-to-r from-blue-500 to-indigo-600',
+  'gradient-purple': 'bg-gradient-to-r from-purple-500 to-pink-500',
+  'gradient-teal': 'bg-gradient-to-r from-teal-500 to-emerald-500'
+};
+
+const getSectionColor = (section) => {
+  if (!section?.color) return 'bg-blue-500';
+  
+  // Handle gradient cases
+  if (section.color.startsWith('gradient-')) {
+    return colorMap[section.color] || 'bg-gradient-to-r from-blue-500 to-indigo-600';
+  }
+  
+  // If already a full class name (contains 'bg-')
+  if (section.color.includes('bg-')) {
+    // Validate it's a proper Tailwind color class
+    const isValid = Object.values(colorMap).includes(section.color) || 
+                   /^bg-(?:[a-z]+)-(?:50|[1-9]00)$/.test(section.color);
+    return isValid ? section.color : 'bg-blue-500';
+  }
+  
+  // Otherwise map from color name to full class
+  return colorMap[section.color] || 'bg-blue-500';
+};
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-7xl mx-auto px-4 py-12">
                 {/* Header */}
                 <div className="mb-12 text-center">
@@ -34,7 +98,7 @@ const TrainingSyllabus = () => {
                         transition={{ duration: 0.6 }}
                         className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-500 to-indigo-700 text-transparent bg-clip-text"
                     >
-                        {trainingData.whatIs.name} Learning Path
+                        {syllabus[0]?.name} <span className='text-slate-800 dark:text-white'>Training Syllabus</span>
                     </motion.h1>
                     <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         A structured curriculum designed to take you from foundational concepts to advanced mastery
@@ -64,90 +128,95 @@ const TrainingSyllabus = () => {
                     <div className="hidden lg:block w-1/4">
                         <div className="relative flex flex-col space-y-11 pl-6">
                             <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                            {syllabus.map((section, index) => (
-                                <div
-                                    key={index}
-                                    className="relative"
-                                    onMouseEnter={() => setIsHovering(index)}
-                                    onMouseLeave={() => setIsHovering(null)}
-                                >
-                                    <motion.div
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className={`absolute left-0 w-10 h-10 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 ${section.color} ${index === activeSection ? 'ring-2 ring-offset-2 ring-current ring-offset-white dark:ring-offset-gray-900' : ''}`}
-                                        onClick={() => setActiveSection(index)}
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        transition={{ delay: index * 0.1 }}
+                            {filteredData.map((section, index) => {
+                                const sectionColor = getSectionColor(section);
+                                return (
+                                    <div
+                                        key={index}
+                                        className="relative"
+                                        onMouseEnter={() => setIsHovering(index)}
+                                        onMouseLeave={() => setIsHovering(null)}
                                     >
-                                        {section.icon}
-                                    </motion.div>
-                                    <AnimatePresence>
-                                        {(isHovering === index || index === activeSection) && (
-                                            <motion.div
-                                                initial={{ opacity: 0, x: 20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                exit={{ opacity: 0, x: 20 }}
-                                                transition={{ duration: 0.2 }}
-                                                className="ml-11 p-3 rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 absolute z-10 w-64"
-                                            >
-                                                <h3 className="font-semibold text-gray-900 dark:text-white">{section.title}</h3>
-                                                <p className="text-sm mt-1 text-gray-600 dark:text-gray-300">{section.description}</p>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            ))}
+                                        <motion.div
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className={`absolute left-0 w-10 h-10 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 ${sectionColor} ${index === activeSection ? 'ring-2 ring-offset-2 ring-current ring-offset-white dark:ring-offset-gray-900' : ''}`}
+                                            onClick={() => setActiveSection(index)}
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            transition={{ delay: index * 0.1 }}
+                                        >
+                                            {section.icon}
+                                        </motion.div>
+                                        <AnimatePresence>
+                                            {(isHovering === index || index === activeSection) && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, x: 20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    exit={{ opacity: 0, x: 20 }}
+                                                    transition={{ duration: 0.2 }}
+                                                    className="ml-11 p-3 rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 absolute z-10 w-64"
+                                                >
+                                                    <h3 className="font-semibold text-gray-900 dark:text-white">{section.title}</h3>
+                                                    <p className="text-sm mt-1 text-gray-600 dark:text-gray-300">{section.description}</p>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 
                     {/* Current Section Content */}
                     <div className="lg:w-2/4">
-                        <motion.div
-                            key={activeSection}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
-                        >
-                            <div className={`p-6 flex items-center gap-4 ${syllabus[activeSection].color} text-white`}>
-                                <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 1, repeat: 0 }}
-                                    className="text-3xl"
-                                >
-                                    {syllabus[activeSection].icon}
-                                </motion.div>
-                                <div>
-                                    <h2 className="text-2xl font-bold">{syllabus[activeSection].title}</h2>
-                                    <p className="text-sm opacity-90">{syllabus[activeSection].description}</p>
+                        {filteredData.length > 0 && (
+                            <motion.div
+                                key={activeSection}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+                            >
+                                <div className={`p-6 flex items-center gap-4 ${getSectionColor(filteredData[activeSection])} text-white`}>
+                                    <motion.div
+                                        animate={{ rotate: 360 }}
+                                        transition={{ duration: 1, repeat: 0 }}
+                                        className="text-3xl"
+                                    >
+                                        {filteredData[activeSection].icon}
+                                    </motion.div>
+                                    <div>
+                                        <h2 className="text-2xl font-bold">{filteredData[activeSection].title}</h2>
+                                        <p className="text-sm opacity-90">{filteredData[activeSection].description}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-6 flex justify-between items-center">
-                                    <h3 className="font-medium text-gray-900 dark:text-white">Key Learning Points</h3>
-                                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
-                                        Module {activeSection + 1} of {syllabus.length}
-                                    </span>
+                                <div className="p-6">
+                                    <div className="mb-6 flex justify-between items-center">
+                                        <h3 className="font-medium text-gray-900 dark:text-white">Key Learning Points</h3>
+                                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                                            Module {activeSection + 1} of {filteredData.length}
+                                        </span>
+                                    </div>
+                                    <ul className="space-y-4">
+                                        {filteredData[activeSection].subpoints?.map((item, i) => (
+                                            <motion.li
+                                                key={i}
+                                                initial={{ opacity: 0, x: -10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: i * 0.1 }}
+                                                className="flex items-start gap-3"
+                                            >
+                                                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${getSectionColor(filteredData[activeSection])}`}>
+                                                    {i + 1}
+                                                </span>
+                                                <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
                                 </div>
-                                <ul className="space-y-4">
-                                    {syllabus[activeSection].subpoints.map((item, i) => (
-                                        <motion.li
-                                            key={i}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: i * 0.1 }}
-                                            className="flex items-start gap-3"
-                                        >
-                                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${syllabus[activeSection].color}`}>
-                                                {i + 1}
-                                            </span>
-                                            <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>
-                                        </motion.li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        )}
 
                         {/* Navigation Buttons */}
                         <div className="flex justify-between items-center mt-8">
@@ -160,7 +229,7 @@ const TrainingSyllabus = () => {
                             </button>
                             <button
                                 onClick={handleNext}
-                                disabled={activeSection === syllabus.length - 1}
+                                disabled={activeSection === filteredData.length - 1}
                                 className="px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 Next Module →
@@ -173,20 +242,23 @@ const TrainingSyllabus = () => {
                         <div className="sticky top-4 p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
                             <h3 className="font-bold mb-4 text-gray-900 dark:text-white">Curriculum Progress</h3>
                             <div className="space-y-4">
-                                {syllabus.map((section, index) => (
-                                    <div
-                                        key={index}
-                                        className={`flex items-center gap-3 cursor-pointer ${index === activeSection ? 'font-semibold text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}
-                                        onClick={() => setActiveSection(index)}
-                                    >
-                                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-white ${index <= activeSection ? section.color : 'bg-gray-200 dark:bg-gray-700'}`}>
-                                            {index <= activeSection ? '✓' : index + 1}
+                                {filteredData.map((section, index) => {
+                                    const sectionColor = getSectionColor(section);
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={`flex items-center gap-3 cursor-pointer ${index === activeSection ? 'font-semibold text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}
+                                            onClick={() => setActiveSection(index)}
+                                        >
+                                            <div className={`w-7 h-7 rounded-full flex items-center justify-center text-white ${index <= activeSection ? sectionColor : 'bg-gray-200 dark:bg-gray-700'}`}>
+                                                {index <= activeSection ? '✓' : index + 1}
+                                            </div>
+                                            <span className="text-sm">
+                                                {section.title}
+                                            </span>
                                         </div>
-                                        <span className="text-sm">
-                                            {section.title}
-                                        </span>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
                                 <div className="flex justify-between mb-2 text-sm">
@@ -207,7 +279,7 @@ const TrainingSyllabus = () => {
                 {/* Mobile Navigation */}
                 <div className="lg:hidden mt-12">
                     <div className="flex overflow-x-auto pb-4 gap-2 scrollbar-hide">
-                        {syllabus.map((section, index) => (
+                        {filteredData.map((section, index) => (
                             <button
                                 key={index}
                                 onClick={() => setActiveSection(index)}

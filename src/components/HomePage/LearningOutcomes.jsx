@@ -24,7 +24,7 @@ export function LearningOutcomes() {
 
     return (
         <section className="px-4 py-16 mt-2 bg-slate-100 dark:bg-gray-900">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 dark:text-white md:mb-16 mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white md:mb-16 mb-14">
                 Learning <span className="text-blue-600 dark:text-blue-400">Outcomes</span>
             </h2>
             <div className="flex flex-col md:flex-row flex-wrap justify-center gap-y-4 md:gap-8">

@@ -21,7 +21,7 @@ import CompanyMarquee from './CompanyMarquee';
 function AboutCourse() {
   const courseDetail = useLoaderData();
   const location = useLocation();
-  const { name } = courseDetail;
+  const { name, trainingSyllabus, trainingSyllabus2, faqs } = courseDetail;
 
   return (
     <div className='relative bg-white dark:bg-gray-900 transition-colors duration-300'>
@@ -110,7 +110,9 @@ function AboutCourse() {
 
       {courseDetail.roadMap ? (<RoadMap />) : ''}
 
-      {courseDetail.roadMap ? (<TrainingSyllabus />) : ''}
+      {courseDetail.roadMap ? (<TrainingSyllabus syllabus={trainingSyllabus} />) : ''}
+
+      {(location.pathname.slice(1) === "sap-mm") && (<TrainingSyllabus syllabus={trainingSyllabus2}/>)}
 
       {/* {!(location.pathname.slice(1) === "best-sap-training") && (<JobPreparation />)} */}
       <JobPreparation />
@@ -118,15 +120,15 @@ function AboutCourse() {
       <CertificationSection certificateImg={null} courseName={name} />
 
       <Modules />
-<div className='-mt-16'>
-<PlacedStudents className={`text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 dark:text-white`} />
-</div>
+      <div className='-mt-16'>
+        <PlacedStudents className={`text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 dark:text-white`} />
+      </div>
 
-<FAQSection />
+      <FAQSection faqs={faqs} />
 
-    <div className='py-11 bg-gray-100 dark:bg-slate-900'>
-      <img className="md:w-[70vw] m-auto w-10vw" src="./addons1.png" alt="addon" />
-    </div>
+      <div className='py-11 bg-gray-100 dark:bg-slate-900'>
+        <img className="md:w-[70vw] m-auto w-10vw" src="./addons1.png" alt="addon" />
+      </div>
 
       <CompanyMarquee />
 

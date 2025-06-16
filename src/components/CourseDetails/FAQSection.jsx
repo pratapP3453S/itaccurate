@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import FreeDemoForm from "../ContactUs/FreeDemoForm"
 
-const FAQSection = () => {
+const FAQSection = ({ faqs }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -93,6 +95,9 @@ const FAQSection = () => {
         </div>
 
         {/* Right Side Illustration */}
+        {
+          showForm && <FreeDemoForm onClose={() => setShowForm(false)} /> 
+        }
         <div className="hidden lg:block lg:w-1/3 relative">
           <div className="sticky top-24">
             <div className="relative group">
@@ -107,7 +112,7 @@ const FAQSection = () => {
             <div className="mt-6 p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg">
               <h3 className="text-xl font-bold text-indigo-900 dark:text-white mb-2">Need more help?</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-4">Can't find what you're looking for? Our team is happy to help!</p>
-              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-full font-medium transition-colors duration-300 shadow-md hover:shadow-lg">
+              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-full font-medium transition-colors duration-300 shadow-md hover:shadow-lg" onClick={() => setShowForm(true)}>
                 Contact Support
               </button>
             </div>
@@ -118,48 +123,5 @@ const FAQSection = () => {
 
   );
 };
-
-const faqs = [
-  {
-    question: "What is an HR Business Analyst?",
-    answer: "An HR Business Analyst is a professional who analyzes human resources data and processes to improve organizational performance. They work closely with both the HR team and business stakeholders to ensure that HR strategies align with business goals, focusing on areas such as workforce planning, recruitment, retention, and performance management.",
-  },
-  {
-    question: "What skills are essential for an HR Business Analyst?",
-    answer: "Key skills for an HR Business Analyst include proficiency in data analysis tools like Excel, Power BI, and Tableau, a deep understanding of HR processes (recruitment, employee engagement, retention), strong problem-solving abilities, business strategy awareness, and effective communication skills to present insights clearly.",
-  },
-  {
-    question: "What tools are used by HR Business Analysts?",
-    answer: "HR Business Analysts commonly use tools such as Excel for data analysis, Power BI and Tableau for data visualization, SQL for querying databases, and HR platforms like SAP SuccessFactors or Oracle HCM for workforce management and analytics.",
-  },
-  {
-    question: "How does an HR Business Analyst contribute to organizational success?",
-    answer: "HR Business Analysts help organizations by providing data-driven insights into employee performance, turnover rates, engagement levels, and other key HR metrics. They identify trends, improve HR processes, and suggest actionable strategies to align HR practices with overall business objectives, leading to better decision-making and enhanced organizational efficiency.",
-  },
-  {
-    question: "What are the main responsibilities of an HR Business Analyst?",
-    answer: "The main responsibilities include analyzing workforce data to identify trends, supporting HR in decision-making for recruitment and retention, improving HR processes, creating reports and dashboards for business stakeholders, and aligning HR strategies with organizational goals. They also work on projects that require optimizing HR systems and ensuring data accuracy.",
-  },
-  {
-    question: "How do HR Business Analysts use data in their role?",
-    answer: "HR Business Analysts use data to identify patterns in employee behavior, turnover rates, recruitment success, and engagement levels. They analyze this data to provide actionable insights for improving HR processes, designing better HR policies, and aligning workforce strategies with business objectives.",
-  },
-  {
-    question: "What qualifications are required to become an HR Business Analyst?",
-    answer: "While a background in HR or business analysis is helpful, key qualifications include expertise in data analysis, proficiency in relevant tools (Excel, Power BI, Tableau), and knowledge of HR practices. Certifications in HR Analytics, business analysis, or data analytics can be advantageous for a successful career in this field.",
-  },
-  {
-    question: "How can I transition into an HR Business Analyst role?",
-    answer: "To transition into an HR Business Analyst role, start by gaining experience in HR functions and developing strong data analysis skills. Learn tools like Excel, Power BI, or Tableau. You may also consider completing courses in HR analytics, business analysis, or data science. Gaining practical experience through internships or projects will help as well.",
-  },
-  {
-    question: "What challenges does an HR Business Analyst face?",
-    answer: "HR Business Analysts may face challenges such as managing large volumes of employee data, ensuring data accuracy, aligning HR insights with business strategies, and addressing complex HR issues like employee engagement or retention. They also have to deal with organizational resistance to change when suggesting new HR processes.",
-  },
-  {
-    question: "What is the career outlook for HR Business Analysts?",
-    answer: "The career outlook for HR Business Analysts is promising, as organizations increasingly recognize the value of data-driven decision-making in HR. The demand for professionals who can combine HR expertise with analytical skills is growing, particularly in companies looking to optimize their HR functions and improve employee performance.",
-  },
-];
 
 export default FAQSection;

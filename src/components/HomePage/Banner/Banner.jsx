@@ -111,7 +111,7 @@ function Banner() {
       {/* Banner Section */}
       <section className="flex flex-col-reverse md:flex-row items-center px-0 py-8 sm:py-12 md:py-20 sm:pt-28 pt-24 w-full gap-4 sm:gap-7 md:min-h-[70vh] relative overflow-visible">
         {/* Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-indigo-500 opacity-40 dark:opacity-60 backdrop-blur-sm z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-600 opacity-40 dark:opacity-60 backdrop-blur-sm z-0" />
 
         {/* Left Text Section */}
         <motion.div
@@ -177,6 +177,7 @@ function Banner() {
                       src={image.src}
                       alt={image.alt}
                       className={`w-full h-full object-cover rounded-xl shadow-lg border bg-gradient-to-r ${image.color}`}
+                      // className="w-full h-full object-cover rounded-xl"
                     />
                   </div>
                 );

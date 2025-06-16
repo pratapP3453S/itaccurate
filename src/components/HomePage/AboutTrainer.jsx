@@ -39,7 +39,7 @@ const TrainerDetails = () => {
 
   return (
     <section className="px-4 py-16 bg-slate-50 dark:bg-gray-900">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-10">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-10">
         About <span className="text-blue-600 dark:text-blue-400">Our Trainer</span>
       </h2>
       <div className="max-w-5xl mx-auto grid gap-6">
