@@ -142,13 +142,14 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Home from './pages/Home';
 import Layout from './components/Layout';
-import AboutCourse from './components/CourseDetails/AboutCourse';
+import AboutCourse from './pages/AboutCourse';
 import { fetchNavbarData } from './store/navbarSlice';
 import { fetchCompanyRatings } from './store/companyPartnersRatingsSlice';
 import { fetchCourses } from './store/coursesSlice';
 import { fetchPlacedStudents } from './store/placedStudentsSlice';
 import { fetchCoursesData } from './store/coursesDataSlice';
 import { fetchComponentData } from './api/fetchComponentData';
+import Placements from './pages/Placements';
 
 export const dynamicCourseRoutes = [
   // 'about-us',
@@ -198,10 +199,10 @@ export const dynamicCourseRoutes = [
   // 'placed',
   // 'batch',
   // 'salaryhike',
-  // 'servicenow',
-  // 'sap-hr',
-  // 'da-hr',
-  // 'ba-hr',
+  'servicenow',
+  'sap-hr',
+  'da-hr',
+  'ba-hr',
   // 'jobs-openings',
   'data-engineering',
   'sap-course-in-thane',
@@ -224,6 +225,10 @@ const router = createBrowserRouter([
         loader: () => fetchComponentData(route),
         element: <AboutCourse />,
       })),
+      {
+        path: '/placed',
+        element: <Placements />
+      }
     ],
   },
 ]);

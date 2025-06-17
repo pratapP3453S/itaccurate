@@ -31,6 +31,7 @@ const NavBar = () => {
     const [mobileActiveMenu, setMobileActiveMenu] = useState(null);
     const [mobileActiveSubMenu, setMobileActiveSubMenu] = useState(null);
     const [isHoveringSubmenu, setIsHoveringSubmenu] = useState(false);
+    const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -64,32 +65,37 @@ const NavBar = () => {
     };
 
     useEffect(() => {
-        const handleClickOutside = () => {
-            setActiveMainMenu(null);
-            setActiveSubMenu(null);
-            setIsHoveringDropdown(false);
-            setIsHoveringSubmenu(false);
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.navbar-menu-container')) {
+                setActiveMainMenu(null);
+                setActiveSubMenu(null);
+                setIsHoveringDropdown(false);
+                setIsHoveringSubmenu(false);
+            }
         };
 
-        document.addEventListener('click', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
-            document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
     const handleMainMenuEnter = (menuName) => {
         clearTimeout(hoverTimeout);
-        setActiveMainMenu(menuName);
+        // Only set active main menu if not already hovering a submenu
+        if (!isHoveringSubmenu) {
+            setActiveMainMenu(menuName);
+        }
     };
 
     const handleMainMenuLeave = () => {
         // Start timeout when leaving main menu item
         const timeout = setTimeout(() => {
-            if (!isHoveringSubmenu) {
+            if (!isHoveringSubmenu && !isHoveringDropdown) {
                 setActiveMainMenu(null);
                 setActiveSubMenu(null);
             }
-        }, 200);
+        }, 100);
         setHoverTimeout(timeout);
     };
 
@@ -105,14 +111,19 @@ const NavBar = () => {
                 setActiveSubMenu(null);
             }
             setIsHoveringDropdown(false);
-        }, 200);
+        }, 100);
         setHoverTimeout(timeout);
     };
 
-
     const handleSubMenuLeave = () => {
         setIsHoveringSubmenu(false);
-        // Don't close immediately - let parent handle it
+        // Close submenu if not hovering over parent or dropdown
+        const timeout = setTimeout(() => {
+            if (!isHoveringDropdown) {
+                setActiveSubMenu(null);
+            }
+        }, 100);
+        setHoverTimeout(timeout);
     };
 
     const menuItems = useSelector((state) => state.navbar.menuItems);
@@ -174,7 +185,7 @@ const NavBar = () => {
                         </div>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden md:flex items-center space-x-1 relative z-50">
+                        <nav className="hidden md:flex items-center space-x-1 relative z-50 navbar-menu-container">
                             {navItems.map((item) => (
                                 <div
                                     key={item.name}
@@ -250,7 +261,10 @@ const NavBar = () => {
                                                                     transition={{ duration: 0.2, ease: 'easeOut' }}
                                                                     className={`absolute ${course.position === 'left' ? 'right-full mr-2' : 'left-full ml-2'
                                                                         } top-0 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 z-50 border border-gray-200/50 dark:border-gray-700/50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800`}
-                                                                    onMouseEnter={() => setIsHoveringSubmenu(true)}
+                                                                    onMouseEnter={() => {
+                                                                        setIsHoveringSubmenu(true);
+                                                                        setActiveSubMenu(course.title);
+                                                                    }}
                                                                     onMouseLeave={handleSubMenuLeave}
                                                                 >
                                                                     <h4 className="font-semibold text-gray-800 dark:text-white mb-2 px-2">
@@ -306,7 +320,6 @@ const NavBar = () => {
                                     placeholder="Search..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
- 
                                 />
                             </div>
 

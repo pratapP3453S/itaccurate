@@ -134,6 +134,8 @@ export default function RoadMap() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [connectionsVisible, setConnectionsVisible] = useState(false);
   const roadmapData = useLoaderData();
+  const [zIndex, setZIndex] = useState(0);
+  const [activeLayer, setActiveLayer] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -149,7 +151,7 @@ export default function RoadMap() {
 
   return (
     <section className="relative w-full px-4 py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-0">
         {/* Title */}
         <div className="text-center mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent text-gray-800 dark:text-white inline-block">
@@ -185,7 +187,7 @@ export default function RoadMap() {
 
           {/* Bottom Row - only if we have more than 4 items */}
           {!hasOnlyOneRow && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-32 relative z-10">
+            <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-32 relative z-${activeLayer}`}>
               {bottomRowItems.map((module, index) => (
                 <RoadmapItem
                   key={index + 4}
@@ -195,6 +197,7 @@ export default function RoadMap() {
                   setActiveIndex={setActiveIndex}
                   position="bottom"
                   totalItems={roadmapData.roadMap.length}
+                  setActiveLayer={setActiveLayer}
                 />
               ))}
             </div>
@@ -267,7 +270,7 @@ const ConnectionsPipes = ({ roadmapData, hasOnlyOneRow }) => (
               fill="none"
               strokeLinecap="round"
             />
-            <motion.circle
+            {/* <motion.circle
               cx={x}
               cy={yStart}
               r="1.5"
@@ -275,7 +278,7 @@ const ConnectionsPipes = ({ roadmapData, hasOnlyOneRow }) => (
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.15 + 0.4, duration: 0.4 }}
-            />
+            /> */}
           </g>
         );
       })}
@@ -284,9 +287,11 @@ const ConnectionsPipes = ({ roadmapData, hasOnlyOneRow }) => (
 );
 
 // Roadmap Item Component - updated to handle single row position
-const RoadmapItem = ({ module, index, activeIndex, setActiveIndex, position, totalItems }) => {
+const RoadmapItem = ({ module, index, activeIndex, setActiveIndex, position, totalItems, setActiveLayer }) => {
   const delay = index * 0.1;
   const zIndexOffset = position === "top" ? totalItems - index : index;
+  // { position === "top" ? setZIndex(10) : setZIndex(0) }
+  
 
   return (
     <motion.div
@@ -323,9 +328,9 @@ const RoadmapItem = ({ module, index, activeIndex, setActiveIndex, position, tot
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        onMouseEnter={() => setActiveIndex(index)}
-        onMouseLeave={() => setActiveIndex(null)}
-        className={`relative z-20 w-16 h-16 rounded-full flex items-center justify-center text-2xl bg-gradient-to-tr ${module.color} text-white shadow-xl hover:shadow-2xl transition-all cursor-pointer`}
+        onMouseEnter={() => {setActiveIndex(index); setActiveLayer(10);}}
+        onMouseLeave={() => {setActiveIndex(null); setActiveLayer(0);}}
+        className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-2xl bg-gradient-to-tr ${module.color} text-white shadow-xl hover:shadow-2xl transition-all cursor-pointer`}
       >
         {module.icon}
         <div className="absolute -inset-2 rounded-full border-2 border-white/30 animate-ping opacity-0 hover:opacity-100 transition-opacity"></div>
@@ -333,10 +338,10 @@ const RoadmapItem = ({ module, index, activeIndex, setActiveIndex, position, tot
 
       {/* Title & Description */}
       <div className="mt-4 px-2">
-        <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+        <h3 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
           {module.title}
         </h3>
-        <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
+        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
           {module.description}
         </p>
       </div>
@@ -348,8 +353,8 @@ const RoadmapItem = ({ module, index, activeIndex, setActiveIndex, position, tot
             initial={{ opacity: 0, y: position === "top" ? 10 : position === "bottom" ? -10 : 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: position === "top" ? 10 : position === "bottom" ? -10 : 10, scale: 0.9 }}
-            className={`absolute ${position === "top" ? "top-full mt-4" : position === "bottom" ? "bottom-full mb-4" : "top-full mt-4"} w-[90vw] max-w-md bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 text-left backdrop-blur-sm`}
-            style={{ zIndex: 1000 + index }}
+            className={`absolute z-40 ${position === "top" ? "top-full mt-0" : position === "bottom" ? "bottom-full mb-4" : "top-full mt-4"} w-[90vw] max-w-md bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 text-left backdrop-blur-sm`}
+            // style={{ zIndex: 1000 + index }}
           >
             <div 
               className={`absolute ${position === "top" ? "-top-2" : position === "bottom" ? "-bottom-2" : "-top-2"} left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 rotate-45 ${position === "top" ? "border-t border-l" : position === "bottom" ? "border-b border-r" : "border-t border-l"} border-gray-200 dark:border-gray-700`}
