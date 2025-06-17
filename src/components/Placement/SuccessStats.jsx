@@ -149,9 +149,7 @@ import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
 
 const SuccessStats = () => {
   const [showAll, setShowAll] = useState(false);
-  const visibleCount = showAll ? placements.length : 12;
-
-const placements = [
+  const placements = [
   // SAP Roles
   { role: "SAP ABAP Consultants", count: 430, icon: "🖥️", color: "from-blue-300 to-blue-500" },
   { role: "SAP FICO Consultants", count: 610, icon: "💰", color: "from-green-300 to-green-500" },
@@ -209,9 +207,10 @@ const placements = [
   { role: "AI Engineers", count: 483, icon: "🧠", color: "from-purple-300 to-purple-500" },
   { role: "Business Intelligence Developers", count: 588, icon: "📈", color: "from-teal-200 to-teal-400" }
 ];
+  const visibleCount = showAll ? placements.length : 12;
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gradient-to-b dark:from-gray-700 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -236,7 +235,7 @@ const placements = [
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              className={`relative bg-gradient-to-br ${placement.color} rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
+              className={`relative flex flex-col justify-evenly h-52 bg-gradient-to-br ${placement.color} rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
             >
               {/* Blur Overlay */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-md border border-white/60 rounded-xl z-10 pointer-events-none" />

@@ -18,6 +18,7 @@ import PlacedStudents from "../components/HomePage/PlacedStudents";
 import FAQSection from '../components/CourseDetails/FAQSection';
 import ContactUs from '../components/ContactUs/ContactUs';
 import CompanyMarquee from '../components/CourseDetails/CompanyMarquee';
+import CourseOpportunities from '../components/CourseDetails/CourseOpportunities';
 
 function AboutCourse() {
   const courseDetail = useLoaderData();
@@ -144,6 +145,7 @@ function AboutCourse() {
       <div className='py-11 bg-gray-100 dark:bg-slate-900'>
         <img className="md:w-[70vw] m-auto w-10vw" src="./addons1.png" alt="addon" />
       </div>
+      <CourseOpportunities pageName={name} />
       <CompanyMarquee />
       <ContactUs />
     </div>

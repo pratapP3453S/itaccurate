@@ -29,7 +29,7 @@ const SubscribeDemo = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <motion.h2
@@ -41,7 +41,7 @@ const SubscribeDemo = () => {
             Contact Now for a Free Demo{" "}
             <span className="relative inline-block">
               <span className="relative z-10">Get Placed</span>
-              <span className="absolute left-0 bottom-0 h-2 w-full bg-purple-400/70 dark:bg-purple-600/70 -z-0 transform translate-y-1"></span>
+              <span className="absolute left-0 bottom-0 h-2 w-full bg-blue-400/70 dark:bg-blue-600/70 -z-0 transform translate-y-1"></span>
             </span>
           </motion.h2>
 
@@ -75,7 +75,7 @@ const SubscribeDemo = () => {
               className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all p-6 border border-gray-200 dark:border-gray-700"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="p-3 mb-4 bg-purple-100 dark:bg-purple-900/30 rounded-full text-purple-600 dark:text-purple-400">
+                <div className="p-3 mb-4 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400">
                   {benefit.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">

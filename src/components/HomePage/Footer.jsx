@@ -74,7 +74,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 pt-12 pb-6 px-4 sm:px-6 lg:px-8 shadow-lg transition-colors duration-300">
+        <footer className="bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-200 pt-12 pb-6 px-4 sm:px-6 lg:px-8 shadow-lg transition-colors duration-300">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                 {/* Brand & Quick Links */}

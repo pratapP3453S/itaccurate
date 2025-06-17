@@ -45,7 +45,7 @@ const SuccessfulStudentPlaced = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
                             whileHover={{ scale: 1.02 }}
-                            className="bg-slate-200 dark:bg-slate-700 backdrop-blur-md rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all border border-gray-200 dark:border-gray-700"
+                            className="bg-slate-200 flex flex-col justify-evenly h-64 dark:bg-slate-700 backdrop-blur-md rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all border border-gray-200 dark:border-gray-700"
                         >
                             <div className="p-5">
                                 <div className="flex items-center space-x-4 mb-4">

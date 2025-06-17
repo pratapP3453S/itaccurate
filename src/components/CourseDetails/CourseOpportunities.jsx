@@ -1,107 +1,199 @@
-import coursesData from "../PlacementOpportunites";
-import { useModal } from "../context/ModelContext";
-import DialogContact from "./DialogContact";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { fetchFullCourseData } from "../../api/fetchComponentData";
+import { Link } from "react-router-dom";
+import { FaBriefcase, FaMoneyBillWave, FaChartLine } from "react-icons/fa";
+import FreeDemoForm from "../ContactUs/FreeDemoForm";
 
 const CourseOpportunities = ({ pageName }) => {
-    const course = coursesData[pageName];
-    const { openModal } = useModal();
+  const [fullCourseData, setFullCourseData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
-    const handleClick = () => {
-        openModal(<DialogContact />);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchFullCourseData(pageName);
+        setFullCourseData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+    fetchData();
+  }, [pageName]);
 
-    if (!course) {
-        return <p className="text-center text-gray-600">No data available for this page.</p>;
-    }
-
+  if (isLoading) {
     return (
-        <div className="p-4 md:p-6">
-            <h2
-                className="text-xl md:text-2xl font-bold text-center text-white"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-            >
-                Career Opportunities in <span>{course.title}</span>
-            </h2>
-
-            <p className="mt-3 md:mt-5 text-sm md:text-base text-center text-white">
-                {course.description}
-            </p>
-
-            <div className="mt-4 md:mt-6 flex flex-col lg:flex-row gap-4">
-                {/* Salaries Section */}
-                <div className="flex-1 bg-[#E1D9FF] p-4 md:p-6 rounded-lg">
-                    <h2 className="text-lg md:text-xl font-semibold text-[#7B1FA2]">
-                        Salary Package in {course.title}
-                    </h2>
-                    <table className="mt-4 w-full text-sm border-collapse">
-                        <thead>
-                            <tr>
-                                <th className="px-2 py-2 text-left text-[#7B1FA2] border-b">Job Title</th>
-                                <th className="px-2 py-2 text-left text-[#7B1FA2] border-b">Salary Range</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {course.salaries.map((salary, index) => (
-                                <tr key={index} className="border-b border-gray-300">
-                                    <td className="py-2 text-gray-700">{salary.role}</td>
-                                    <td className="py-2 text-gray-700">{salary.range}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        <button
-                            onClick={handleClick}
-                            className="px-4 py-2 bg-[#7B1FA2] text-white rounded-lg hover:bg-purple-800"
-                        >
-                            <a href="/contact">Contact Us</a>
-                        </button>
-                        <button
-                            onClick={handleClick}
-                            className="px-4 py-2 bg-[#7B1FA2] text-white rounded-lg hover:bg-purple-800"
-                        >
-                            <a href="/placed">Check Placements</a>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Roles Section */}
-                <div className="flex-1 bg-[#AE99FB] p-4 md:p-6 rounded-lg">
-                    <h2 className="text-lg md:text-xl font-semibold text-[#7B1FA2]">
-                        Work Opportunities for {course.title}
-                    </h2>
-                    <ul className="mt-3 flex flex-wrap gap-5">
-                        {course.roles.map((role, index) => (
-                            <li key={index} className="inline-block">
-                                <a
-                                    className="px-3 py-2 bg-[#E1D9FF] text-[#7B1FA2] rounded-md text-sm"
-                                    href={role.link}
-                                >
-                                    {role.title}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <h2 className="mt-6 text-lg md:text-xl font-semibold text-[#7B1FA2]">
-                        Popular Jobs on the Rise
-                    </h2>
-                    <ul className="mt-3 flex flex-wrap gap-5">
-                        {course.upcomingRoles.map((role, index) => (
-                            <li key={index} className="inline-block">
-                                <a
-                                    className="px-3 py-2 bg-[#E1D9FF] text-[#7B1FA2] rounded-md text-sm"
-                                    href={role.link}
-                                >
-                                    {role.title}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </div>
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
     );
+  }
+
+  if (!fullCourseData) {
+    return (
+      <p className="text-center text-gray-600 dark:text-gray-400 py-10">
+        No data available for this page.
+      </p>
+    );
+  }
+
+  return (
+    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Career Opportunities in{" "}
+            <span className="text-blue-600 dark:text-blue-400">
+              {fullCourseData.title}
+            </span>
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            {fullCourseData.description}
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Salaries Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+          >
+            <div className="p-6">
+              <div className="flex items-center mb-6">
+                <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full mr-4">
+                  <FaMoneyBillWave className="text-blue-600 dark:text-blue-400 text-xl" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Salary Packages in {fullCourseData.title}
+                </h3>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead className="border-b border-gray-200 dark:border-gray-700">
+                    <tr>
+                      <th className="pb-3 text-blue-600 dark:text-blue-400 font-medium">
+                        Job Title
+                      </th>
+                      <th className="pb-3 text-blue-600 dark:text-blue-400 font-medium">
+                        Salary Range
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.isArray(fullCourseData.salaries) &&
+                      fullCourseData.salaries.map((salary, index) => (
+                        <tr
+                          key={index}
+                          className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
+                        >
+                          <td className="py-4 text-gray-700 dark:text-gray-300">
+                            {salary.role}
+                          </td>
+                          <td className="py-4 text-gray-700 dark:text-gray-300">
+                            {salary.range}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+{ showForm && (<FreeDemoForm onClose={() => setShowForm(false)} />) }
+              <div className="mt-6 flex flex-wrap gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition-all" onClick={()=> setShowForm(true)}
+                >
+                  Contact Us
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg shadow transition-all"
+                >
+                  <Link to="/placed">Check Placements</Link>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Roles Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+          >
+            <div className="p-6">
+              <div className="flex items-center mb-6">
+                <div className="p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-full mr-4">
+                  <FaBriefcase className="text-indigo-600 dark:text-indigo-400 text-xl" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  Work Opportunities for {fullCourseData.title}
+                </h3>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-4">
+                  Current Job Roles
+                </h4>
+                <div className="flex flex-wrap gap-3">
+                  {Array.isArray(fullCourseData.roles) &&
+                    fullCourseData.roles.map((role, index) => (
+                      <motion.a
+                        key={index}
+                        whileHover={{ y: -3 }}
+                        href={role.link}
+                        className="px-4 py-2 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-gray-700"
+                      >
+                        {role.title}
+                      </motion.a>
+                    ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center mb-4">
+                  <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-full mr-3">
+                    <FaChartLine className="text-green-600 dark:text-green-400 text-lg" />
+                  </div>
+                  <h4 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    Emerging Job Roles
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {Array.isArray(fullCourseData.upcomingRoles) &&
+                    fullCourseData.upcomingRoles.map((role, index) => (
+                      <motion.a
+                        key={index}
+                        whileHover={{ y: -3 }}
+                        href={role.link}
+                        className="px-4 py-2 bg-white dark:bg-gray-800 text-green-600 dark:text-green-400 rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-gray-700"
+                      >
+                        {role.title}
+                      </motion.a>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default CourseOpportunities;
